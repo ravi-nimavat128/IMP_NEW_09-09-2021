@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Imperial Palace</string>
+      <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAqABWLW_xFPjE5WQV9AILtPNv6_gv9xLM</string>
+</resources>

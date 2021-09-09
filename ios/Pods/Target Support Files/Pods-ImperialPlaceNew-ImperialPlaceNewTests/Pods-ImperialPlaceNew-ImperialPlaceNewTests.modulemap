@@ -1,0 +1,6 @@
+module Pods_ImperialPlaceNew_ImperialPlaceNewTests {
+  umbrella header "Pods-ImperialPlaceNew-ImperialPlaceNewTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
