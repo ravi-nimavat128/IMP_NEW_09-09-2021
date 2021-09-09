@@ -45,6 +45,7 @@ import {
 } from '../reducers/cartItems/actions';
 import {addLoginToken} from '../reducers/UserReducer/user_actions';
 import {BottomSheet} from 'react-native-btr';
+import Cart from './Cart';
 
 var back_arrow = require('../assets/image/back_arrow.png');
 var vag_icon = require('../assets/image/vag.png');
@@ -255,6 +256,7 @@ class Order extends Component {
       item_id: '',
       is_line: 0,
       is_first_title: '',
+      cart_bottomsheet: false,
       is_second_title: '',
       item_price: '',
       selected_id_price: '',
@@ -1280,15 +1282,16 @@ class Order extends Component {
           height: 37,
           width: 95,
           marginTop: item.is_options == 0 && item.topping_data == 0 ? 0 : 8,
-          borderWidth: 0.1,
+          borderWidth: 0.8,
           borderRadius: 5,
-          borderColor: '#ddd',
-          borderBottomWidth: 0,
-          shadowColor: 'gray',
-          shadowOffset: {width: 0, height: 0.5},
-          shadowOpacity: 0.8,
-          shadowRadius: 2,
-          elevation: 2,
+          backgroundColor: '#FDF6F4',
+          borderColor: '#FFC4C7',
+          // borderBottomWidth: 0,
+          // shadowColor: '#FFC4C7',
+          // shadowOffset: {width: 0, height: 0.5},
+          // shadowOpacity: 0.8,
+          // shadowRadius: 2,
+          // elevation: 2,
           flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center',
@@ -1297,7 +1300,7 @@ class Order extends Component {
           style={{flex: 0.8, justifyContent: 'center', alignContent: 'center'}}>
           <Text
             style={{
-              color: '#60B244',
+              color: '#EC5865',
               fontSize: 13,
               fontWeight: 'bold',
               alignSelf: 'center',
@@ -1313,7 +1316,7 @@ class Order extends Component {
         </View>
         <Text
           style={{
-            color: 'green',
+            color: '#EC5865',
             fontSize: 15,
             // marginTop: -12,
             // marginLeft: 15,
@@ -1959,24 +1962,29 @@ class Order extends Component {
           </BottomSheet>
         </View>
 
-        <Modal
-          animationType="slide"
-          transparent={true}
-          closeOnClick={false}
+        <BottomSheet
+          // animationType="slide"
+          // transparent={true}
+          // closeOnClick={false}
           visible={this.state.modalVisible}
-          onRequestClose={() => {
+          onBackButtonPress={() => {
+            this.setState({
+              modalVisible: !this.state.modalVisible,
+            });
+          }}
+          onBackdropPress={() => {
             this.setState({
               modalVisible: !this.state.modalVisible,
             });
           }}>
-          <TouchableWithoutFeedback //this touchable closes modal
+          {/* <TouchableWithoutFeedback //this touchable closes modal
             onPress={() => {
               this.setState({modalVisible: false});
-            }}>
-            <View style={{flex: 1}}>
-              {/* {this.renderOptionList()} */}
-              <SafeAreaView style={styles.modalView}>
-                {/* <TouchableOpacity
+            }}> */}
+          <View style={{flex: 1}}>
+            {/* {this.renderOptionList()} */}
+            <SafeAreaView style={styles.modalView}>
+              {/* <TouchableOpacity
                   onPress={() => this.setState({modalVisible: false})}
                   style={{
                     width: 60,
@@ -1992,17 +2000,17 @@ class Order extends Component {
                       width: 15,
                     }}></Image>
                 </TouchableOpacity> */}
-                <FlatList
-                  style={{flex: 1, alignContent: 'center'}}
-                  showsVerticalScrollIndicator={false}
-                  data={this.state.MainCat}
-                  renderItem={this.renderItem_menu}
-                  keyExtractor={item => item.id.toString()}
-                  // extraData={this.state.selectedId}
-                />
-              </SafeAreaView>
-            </View>
-          </TouchableWithoutFeedback>
+              <FlatList
+                style={{flex: 1, alignContent: 'center'}}
+                showsVerticalScrollIndicator={false}
+                data={this.state.MainCat}
+                renderItem={this.renderItem_menu}
+                keyExtractor={item => item.id.toString()}
+                // extraData={this.state.selectedId}
+              />
+            </SafeAreaView>
+          </View>
+          {/* </TouchableWithoutFeedback> */}
 
           {/* <View style={style.centeredView}>
           <View style={style.modalView}>
@@ -2015,7 +2023,7 @@ class Order extends Component {
           </View>
         </View> */}
           {/* <MenuFunction modalVisible={this.state.modalVisible} /> */}
-        </Modal>
+        </BottomSheet>
 
         <View
           style={{
@@ -2070,10 +2078,13 @@ class Order extends Component {
           {this.props.myItems.length == 0 ? null : (
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('Cart')}
+              // onPress={() =>
+              //   this.setState({cart_bottomsheet: !this.state.cart_bottomsheet})
+              // }
               style={{
                 width: '95%',
                 height: 60,
-                backgroundColor: '#BE984A',
+                backgroundColor: '#ED505C',
                 margin: 6,
 
                 // position: 'absolute',
@@ -2145,6 +2156,18 @@ class Order extends Component {
               </View>
             </TouchableOpacity>
           )}
+          {/* <BottomSheet
+            visible={this.state.cart_bottomsheet}
+            //setting the visibility state of the bottom shee
+            // onBackButtonPress={this.toggle_c_Bottomsheet}
+            //Toggling the visibility state on the click of the back botton
+            // onBackdropPress={this.toggleBottomNavigationView}
+            //Toggling the visibility state on the clicking out side of the sheet
+          >
+            <View style={{width: 250, height: 400}}>
+              <Cart />
+            </View>
+          </BottomSheet> */}
         </View>
       </SafeAreaView>
     );

@@ -1884,7 +1884,7 @@ class Cart extends Component {
                         // this.NewPlaceOrder();
                       }}
                       style={{
-                        backgroundColor: 'gray',
+                        backgroundColor: '#ED505C',
                         marginTop: 8,
                         height: 60,
                         marginBottom: 70,
