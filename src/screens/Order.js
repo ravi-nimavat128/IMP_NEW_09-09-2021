@@ -104,26 +104,41 @@ const Item = ({
         // justifyContent: 'space-between',
         flex: 1,
       }}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <Image
-          source={require('../assets/image/vag.png')}
-          style={{height: 12, width: 12, alignSelf: 'center'}}
-        />
-        <Image
-          source={img_src}
-          style={{
-            height: 15,
-            width: 15,
-            marginHorizontal: 8,
-          }}
-        />
-        {/* <Text style={[styles.title, textColor, {alignSelf: 'center'}]}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}>
+        <View style={{flexDirection: 'row'}}>
+          <Image
+            source={require('../assets/image/vag.png')}
+            style={{height: 12, width: 12, alignSelf: 'center'}}
+          />
+
+          {/* <Text style={[styles.title, textColor, {alignSelf: 'center'}]}>
           {item.topping_price == '0' ? null : item.topping_price}
         </Text> */}
-        <Text style={[styles.title, {alignSelf: 'center'}]}>
-          {item.topping_name}
-          <View style={{flex: 0.1}}></View>
-        </Text>
+          <Text style={[styles.title, {alignSelf: 'center'}]}>
+            {item.topping_name}
+            <View style={{flex: 0.1}}></View>
+          </Text>
+        </View>
+        <View
+          style={{flexDirection: 'row', alignItems: 'center', marginRight: 15}}>
+          <Text style={[styles.title, {alignSelf: 'center'}]}>
+            ₹ {item.topping_price}
+            <View style={{flex: 0.1}}></View>
+          </Text>
+          <Image
+            source={img_src}
+            style={{
+              height: 20,
+              width: 20,
+              marginHorizontal: 8,
+            }}
+          />
+        </View>
       </View>
       <View
         style={{flexDirection: 'row', justifyContent: 'space-between'}}></View>
@@ -154,24 +169,38 @@ const Item_one_array = ({
         // justifyContent: 'center',
         flex: 1,
       }}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <Image
-          source={require('../assets/image/vag.png')}
-          style={{
-            height: 12,
-            width: 12,
-            alignSelf: 'center',
-          }}
-        />
-        <Image
-          source={img_src}
-          style={{height: 15, width: 15, marginHorizontal: 8}}
-        />
-        {/* <Text style={[styles.title, textColor, {alignSelf: 'center'}]}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Image
+            source={require('../assets/image/vag.png')}
+            style={{
+              height: 12,
+              width: 12,
+              alignSelf: 'center',
+            }}
+          />
+
+          {/* <Text style={[styles.title, textColor, {alignSelf: 'center'}]}>
           {item.price == '0' ? null : item.price}
         </Text> */}
 
-        <Text style={[styles.title, {alignSelf: 'center'}]}>{item.name}</Text>
+          <Text style={[styles.title, {alignSelf: 'center'}]}>{item.name}</Text>
+        </View>
+        <View
+          style={{flexDirection: 'row', alignItems: 'center', marginRight: 15}}>
+          <Text style={[styles.title, {alignSelf: 'center', marginLeft: 20}]}>
+            ₹ {item.price}
+          </Text>
+          <Image
+            source={img_src}
+            style={{height: 20, width: 20, marginHorizontal: 8}}
+          />
+        </View>
       </View>
       {/* <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
       
@@ -213,7 +242,7 @@ const Item_jain = ({
       />
       <Image
         source={img_src}
-        style={{height: 15, width: 15, marginHorizontal: 8}}
+        style={{height: 20, width: 20, marginHorizontal: 8}}
       />
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <Text style={[styles.title, {alignSelf: 'center'}]}>
@@ -1279,11 +1308,11 @@ class Order extends Component {
           alignSelf: 'center',
           // borderWidth: 1,
           marginRight: 25,
-          height: 37,
-          width: 95,
+          height: 28,
+          width: 75,
           marginTop: item.is_options == 0 && item.topping_data == 0 ? 0 : 8,
-          borderWidth: 0.8,
-          borderRadius: 5,
+          borderWidth: 1,
+          borderRadius: 7,
           backgroundColor: '#FDF6F4',
           borderColor: '#FFC4C7',
           // borderBottomWidth: 0,
@@ -1515,7 +1544,7 @@ class Order extends Component {
             )}
 
             {item.is_options == 0 && item.topping_data == 0 ? null : (
-              <Text style={{color: '#60B244', fontSize: 11, marginLeft: 13}}>
+              <Text style={{color: '#ED505C', fontSize: 11, marginLeft: 4}}>
                 customisable
               </Text>
             )}
@@ -1655,242 +1684,299 @@ class Order extends Component {
             // onBackdropPress={this.toggleBottomNavigationView}
             //Toggling the visibility state on the clicking out side of the sheet
           >
-            <SafeAreaView
-              style={{
-                height:
-                  this.state.Toping_data.length !== 0 &&
-                  this.state.option_jain == '1' &&
-                  (this.state.Toping_one_data !== 0 ||
-                    this.state.Toping_two_data !== 0 ||
-                    this.state.Toping_three_data !== 0)
-                    ? 650
-                    : 450,
-                backgroundColor: '#FFFFFF',
-                // borderRadius: 12,
-                width: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <View
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  this.toggle_c_Bottomsheet(),
+                    this.setState({
+                      // Toping_data: [],
+                      // selectedId: [],
+                      selected_topping_array: [],
+                      selected_one_array_id: [],
+                      selected_two_array_id: [],
+                      selected_three_array_id: [],
+                      selected_topping_item: {
+                        topping_id: [],
+                        // topping_name: '',
+                        price: '',
+                        id: '',
+                        name: '',
+                        qty: 1,
+                        is_option: '',
+                        selected_one_array_id: [],
+                        selected_two_array_id: [],
+                        selected_three_array_id: [],
+                      },
+                    });
+                }}
                 style={{
-                  flex: 1,
-                  flexDirection: 'column',
+                  alignSelf: 'center',
+                  // paddingLeft: 35,
+                  // paddingVertical: 15,
+                  // marginRight: 15,
+                  height: 50,
+                  width: 50,
+                  borderRadius: 50 / 2,
+                  marginBottom: 20,
+                  backgroundColor: 'black',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  // paddingHorizontal: 10,
+                }}>
+                <Image
+                  source={require('../assets/image/close_icon.png')}
+                  style={{
+                    height: 13,
+                    width: 13,
+                    alignSelf: 'center',
+                    tintColor: 'white',
+                    // marginRight: 20,
+                  }}
+                />
+              </TouchableOpacity>
+              <SafeAreaView
+                style={{
+                  height:
+                    this.state.Toping_data.length !== 0 &&
+                    this.state.option_jain == '1' &&
+                    (this.state.Toping_one_data !== 0 ||
+                      this.state.Toping_two_data !== 0 ||
+                      this.state.Toping_three_data !== 0)
+                      ? 650
+                      : 550,
+                  backgroundColor: '#FFFFFF',
+                  // borderRadius: 12,
                   width: '100%',
-                  // borderTopLeftRadius: 9,
-                  // borderTopRightRadius: 9,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderTopLeftRadius: 9,
+                  borderTopRightRadius: 9,
                 }}>
                 <View
                   style={{
-                    flexDirection: 'row',
+                    flex: 1,
+                    flexDirection: 'column',
+                    width: '100%',
                     borderTopLeftRadius: 9,
                     borderTopRightRadius: 9,
-
-                    justifyContent: 'center',
-                    height: 80,
-
-                    width: '100%',
-                    backgroundColor: '#F2F5FC',
-                    justifyContent: 'space-between',
                   }}>
                   <View
                     style={{
                       flexDirection: 'row',
-                      alignItems: 'center',
-                      marginLeft: 20,
-                    }}>
-                    <Image
-                      source={require('../assets/image/vag.png')}
-                      style={{
-                        height: 14,
-                        width: 14,
-                        alignSelf: 'center',
-                        marginLeft: 12,
-                      }}
-                    />
-                    <Text
-                      style={{
-                        color: '#77787C',
-                        fontSize: 17,
-                        marginLeft: 8,
-                        fontWeight: 'bold',
-                        alignSelf: 'center',
-                      }}>
-                      {this.state.item_name}
-                    </Text>
-                  </View>
+                      borderTopLeftRadius: 9,
+                      borderTopRightRadius: 9,
 
-                  <TouchableOpacity
-                    onPress={() => {
-                      this.toggle_c_Bottomsheet(),
-                        this.setState({
-                          // Toping_data: [],
-                          // selectedId: [],
-                          selected_topping_array: [],
-                          selected_one_array_id: [],
-                          selected_two_array_id: [],
-                          selected_three_array_id: [],
-                          selected_topping_item: {
-                            topping_id: [],
-                            // topping_name: '',
-                            price: '',
-                            id: '',
-                            name: '',
-                            qty: 1,
-                            is_option: '',
+                      justifyContent: 'center',
+                      height: 80,
+
+                      width: '100%',
+                      backgroundColor: '#F2F5FC',
+                      justifyContent: 'space-between',
+                    }}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        marginLeft: 20,
+                      }}>
+                      <Image
+                        source={require('../assets/image/vag.png')}
+                        style={{
+                          height: 14,
+                          width: 14,
+                          alignSelf: 'center',
+                          marginLeft: 12,
+                        }}
+                      />
+                      <Text
+                        style={{
+                          color: '#77787C',
+                          fontSize: 17,
+                          marginLeft: 8,
+                          fontWeight: 'bold',
+                          alignSelf: 'center',
+                        }}>
+                        {this.state.item_name}
+                      </Text>
+                    </View>
+
+                    {/* <TouchableOpacity
+                      onPress={() => {
+                        this.toggle_c_Bottomsheet(),
+                          this.setState({
+                            // Toping_data: [],
+                            // selectedId: [],
+                            selected_topping_array: [],
                             selected_one_array_id: [],
                             selected_two_array_id: [],
                             selected_three_array_id: [],
-                          },
-                        });
-                    }}
-                    style={{
-                      alignSelf: 'center',
-                      paddingLeft: 35,
-                      paddingVertical: 15,
-                      marginRight: 15,
-                      paddingHorizontal: 10,
-                    }}>
-                    <Image
-                      source={require('../assets/image/close_icon.png')}
-                      style={{
-                        height: 13,
-                        width: 13,
-                        alignSelf: 'center',
-                        marginRight: 20,
+                            selected_topping_item: {
+                              topping_id: [],
+                              // topping_name: '',
+                              price: '',
+                              id: '',
+                              name: '',
+                              qty: 1,
+                              is_option: '',
+                              selected_one_array_id: [],
+                              selected_two_array_id: [],
+                              selected_three_array_id: [],
+                            },
+                          });
                       }}
-                    />
-                  </TouchableOpacity>
-                </View>
-
-                <ScrollView>
-                  {this.state.option_jain == '1' ? (
-                    <View>
-                      <Text
+                      style={{
+                        alignSelf: 'center',
+                        paddingLeft: 35,
+                        paddingVertical: 15,
+                        marginRight: 15,
+                        paddingHorizontal: 10,
+                      }}>
+                      <Image
+                        source={require('../assets/image/close_icon.png')}
                         style={{
-                          margin: 10,
-                          marginBottom: 10,
-                          fontWeight: 'bold',
-                          alignSelf: 'baseline',
-                          marginLeft: 52,
-                          marginTop: 15,
-                          fontSize: 17,
-                        }}>
-                        Regular/Jain
-                      </Text>
-
-                      <FlatList
-                        style={{alignContent: 'center', marginLeft: 20}}
-                        data={jain_data}
-                        renderItem={this.render_jain}
-                        // horizontal
-                        keyExtractor={item => item.is_option_id.toString()}
-                        extraData={this.state.is_option_selected_id}
+                          height: 13,
+                          width: 13,
+                          alignSelf: 'center',
+                          marginRight: 20,
+                        }}
                       />
-                    </View>
-                  ) : null}
+                    </TouchableOpacity>
+                */}
+                  </View>
 
-                  {this.state.Toping_data == 0 ? null : (
-                    <View>
-                      <Text
-                        style={{
-                          margin: 10,
-                          marginBottom: 10,
-                          fontWeight: 'bold',
-                          alignSelf: 'baseline',
-                          marginLeft: 52,
-                          fontSize: 17,
-                          marginTop: 15,
-                        }}>
-                        {this.state.topping_text == ''
-                          ? 'Select'
-                          : this.state.topping_text}
-                      </Text>
-                      <FlatList
-                        style={{alignContent: 'center', marginLeft: 20}}
-                        data={this.state.Toping_data}
-                        renderItem={this.renderItemm}
-                        // horizontal
-                        keyExtractor={item => item.topping_id.toString()}
-                        // extraData={this.state.selectedId}
-                      />
-                    </View>
-                  )}
+                  <ScrollView>
+                    {this.state.option_jain == '1' ? (
+                      <View>
+                        <Text
+                          style={{
+                            margin: 10,
+                            marginBottom: 10,
+                            fontWeight: 'bold',
+                            alignSelf: 'baseline',
+                            marginLeft: 32,
+                            marginTop: 15,
+                            fontSize: 17,
+                          }}>
+                          Regular/Jain
+                        </Text>
 
-                  {this.state.Toping_one_data == 0 ? null : (
-                    <View>
-                      <Text
-                        style={{
-                          margin: 10,
-                          marginBottom: 10,
-                          fontWeight: 'bold',
-                          alignSelf: 'baseline',
-                          marginLeft: 52,
-                          fontSize: 17,
-                          marginTop: 15,
-                        }}>
-                        {this.state.topping_one_text}
-                      </Text>
-                      <FlatList
-                        style={{alignContent: 'center', marginLeft: 20}}
-                        data={this.state.Toping_one_data}
-                        renderItem={this.renderItem_one_array}
-                        // horizontal
-                        keyExtractor={item => item.id.toString()}
-                        extraData={this.state.selected_one_array_id}
-                      />
-                    </View>
-                  )}
+                        <FlatList
+                          style={{alignContent: 'center', marginLeft: 20}}
+                          data={jain_data}
+                          renderItem={this.render_jain}
+                          // horizontal
+                          keyExtractor={item => item.is_option_id.toString()}
+                          extraData={this.state.is_option_selected_id}
+                        />
+                      </View>
+                    ) : null}
 
-                  {this.state.Toping_two_data == 0 ? null : (
-                    <View>
-                      <Text
-                        style={{
-                          margin: 10,
-                          marginBottom: 10,
-                          fontWeight: 'bold',
-                          alignSelf: 'baseline',
-                          marginLeft: 52,
-                          fontSize: 17,
-                          marginTop: 15,
-                        }}>
-                        {this.state.topping_two_text}
-                      </Text>
-                      <FlatList
-                        style={{alignContent: 'center', marginLeft: 20}}
-                        data={this.state.Toping_two_data}
-                        renderItem={this.renderItem_two_array}
-                        // horizontal
-                        keyExtractor={item => item.id.toString()}
-                        extraData={this.state.selected_two_array_id}
-                      />
-                    </View>
-                  )}
+                    {this.state.Toping_data == 0 ? null : (
+                      <View>
+                        <Text
+                          style={{
+                            margin: 10,
+                            marginBottom: 10,
+                            fontWeight: 'bold',
+                            alignSelf: 'baseline',
+                            marginLeft: 32,
+                            fontSize: 17,
+                            marginTop: 15,
+                          }}>
+                          {this.state.topping_text == ''
+                            ? 'Select'
+                            : this.state.topping_text}
+                        </Text>
+                        <FlatList
+                          style={{alignContent: 'center', marginLeft: 20}}
+                          data={this.state.Toping_data}
+                          renderItem={this.renderItemm}
+                          // horizontal
+                          keyExtractor={item => item.topping_id.toString()}
+                          // extraData={this.state.selectedId}
+                        />
+                      </View>
+                    )}
 
-                  {this.state.Toping_three_data == 0 ? null : (
-                    <View>
-                      <Text
-                        style={{
-                          margin: 10,
-                          marginBottom: 10,
-                          fontWeight: 'bold',
-                          alignSelf: 'baseline',
-                          marginLeft: 52,
-                          fontSize: 17,
-                          marginTop: 15,
-                        }}>
-                        {this.state.topping_three_text}
-                      </Text>
-                      <FlatList
-                        style={{alignContent: 'center', marginLeft: 20}}
-                        data={this.state.Toping_three_data}
-                        renderItem={this.renderItem_three_array}
-                        // horizontal
-                        keyExtractor={item => item.id.toString()}
-                        extraData={this.state.selected_three_array_id}
-                      />
-                    </View>
-                  )}
+                    {this.state.Toping_one_data == 0 ? null : (
+                      <View>
+                        <Text
+                          style={{
+                            margin: 10,
+                            marginBottom: 10,
+                            fontWeight: 'bold',
+                            alignSelf: 'baseline',
+                            marginLeft: 32,
+                            fontSize: 17,
+                            marginTop: 15,
+                          }}>
+                          {this.state.topping_one_text}
+                        </Text>
+                        <FlatList
+                          style={{alignContent: 'center', marginLeft: 20}}
+                          data={this.state.Toping_one_data}
+                          renderItem={this.renderItem_one_array}
+                          // horizontal
+                          keyExtractor={item => item.id.toString()}
+                          extraData={this.state.selected_one_array_id}
+                        />
+                      </View>
+                    )}
 
+                    {this.state.Toping_two_data == 0 ? null : (
+                      <View>
+                        <Text
+                          style={{
+                            margin: 10,
+                            marginBottom: 10,
+                            fontWeight: 'bold',
+                            alignSelf: 'baseline',
+                            marginLeft: 32,
+                            fontSize: 17,
+                            marginTop: 15,
+                          }}>
+                          {this.state.topping_two_text}
+                        </Text>
+                        <FlatList
+                          style={{alignContent: 'center', marginLeft: 20}}
+                          data={this.state.Toping_two_data}
+                          renderItem={this.renderItem_two_array}
+                          // horizontal
+                          keyExtractor={item => item.id.toString()}
+                          extraData={this.state.selected_two_array_id}
+                        />
+                      </View>
+                    )}
+
+                    {this.state.Toping_three_data == 0 ? null : (
+                      <View>
+                        <Text
+                          style={{
+                            margin: 10,
+                            marginBottom: 10,
+                            fontWeight: 'bold',
+                            alignSelf: 'baseline',
+                            marginLeft: 32,
+                            fontSize: 17,
+                            marginTop: 15,
+                          }}>
+                          {this.state.topping_three_text}
+                        </Text>
+                        <FlatList
+                          style={{
+                            alignContent: 'center',
+                            marginLeft: 20,
+                            marginBottom: 25,
+                          }}
+                          data={this.state.Toping_three_data}
+                          renderItem={this.renderItem_three_array}
+                          // horizontal
+                          keyExtractor={item => item.id.toString()}
+                          extraData={this.state.selected_three_array_id}
+                        />
+                      </View>
+                    )}
+                  </ScrollView>
                   <TouchableOpacity
                     onPress={() => {
                       this.props.addToCart({
@@ -1924,12 +2010,12 @@ class Order extends Component {
                     }}
                     style={{
                       height: 43,
-                      marginTop: 50,
+                      marginTop: 10,
                       borderRadius: 3,
-                      backgroundColor: '#60B244',
+                      backgroundColor: '#ED505C',
                       // marginLeft: -5,
                       margin: 15,
-                      marginHorizontal: 45,
+                      marginHorizontal: 65,
                       justifyContent: 'center',
                     }}>
                     <View
@@ -1943,7 +2029,7 @@ class Order extends Component {
                           alignSelf: 'center',
                           fontSize: 15,
                         }}>
-                        Add -{' '}
+                        Add{'  '}
                       </Text>
 
                       <Text
@@ -1956,9 +2042,9 @@ class Order extends Component {
                       </Text>
                     </View>
                   </TouchableOpacity>
-                </ScrollView>
-              </View>
-            </SafeAreaView>
+                </View>
+              </SafeAreaView>
+            </View>
           </BottomSheet>
         </View>
 
