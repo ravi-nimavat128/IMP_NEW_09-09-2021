@@ -32,6 +32,7 @@ import {
   addOffer,
   remove_full_cart,
   add_all_cart_details,
+  is_order_type,
 } from '../reducers/cartItems/actions';
 import {BottomSheet} from 'react-native-btr';
 
@@ -844,6 +845,7 @@ class Cart extends Component {
     // console.log('final_total  ', this.TOPay());
     // console.log('vip number  ', this.props.is_vipp);
     // console.log('total price * qty  ', this.state.all_price_qty_total);
+    console.log('is order type', this.props.is_order);
 
     // this.getSingleAddress(this.state.selected_address_iddd[0]);
 
@@ -862,10 +864,10 @@ class Cart extends Component {
           <SafeAreaView style={style.cart_container}>
             <StatusBar barStyle="light-content" backgroundColor={'black'} />
 
-            <View style={style.header}>
+            {/* <View style={style.header}>
               <View style={{flex: 1}}></View>
               <Text style={style.txt_heading}>OPEN 24 HOURS</Text>
-            </View>
+            </View> */}
             <View
               style={{
                 flex: 1,
@@ -874,11 +876,82 @@ class Cart extends Component {
                 borderTopLeftRadius: 10,
                 borderTopRightRadius: 10,
                 width: '100%',
-                marginTop: 10,
+
+                // marginTop: 50,
               }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  height: 25,
+                  alignContent: 'center',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  // width: '100%',
+                  marginTop: 25,
+                  marginBottom: 15,
+                  marginHorizontal: 10,
+                }}>
+                <Text
+                  style={{
+                    flex: 0.7,
+                    fontSize: 15,
+                    color: 'black',
+                    fontWeight: 'bold',
+                    marginLeft: 8,
+                  }}>
+                  Cart
+                </Text>
+                <View
+                  style={{
+                    flex: 1,
+                    borderRadius: 8,
+                    height: 40,
+                    backgroundColor: '#A9B5B1',
+                    flexDirection: 'row',
+                    // width: 100,
+                  }}>
+                  <TouchableOpacity
+                    onPress={() => this.props.is_order_type('1')}
+                    style={{
+                      flex: 1,
+                      backgroundColor:
+                        this.props.is_order == '1' ? '#ED505C' : '#00000000',
+                      borderRadius: 8,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        fontWeight: 'bold',
+                        color: this.props.is_order == '1' ? 'white' : 'black',
+                      }}>
+                      DELIVERY
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => this.props.is_order_type('2')}
+                    style={{
+                      flex: 1,
+                      backgroundColor:
+                        this.props.is_order == '2' ? '#ED505C' : '#00000000',
+                      borderRadius: 8,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        fontWeight: 'bold',
+                        color: this.props.is_order == '2' ? 'white' : 'black',
+                      }}>
+                      TAKEAWAY
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
               <ScrollView style={{marginBottom: 90}}>
                 <View>
                   <FlatList
+                    style={{marginTop: 20}}
                     scrollEnabled={false}
                     // style={{marginBottom: 20, marginTop: 10}}
                     data={this.props.myItems}
@@ -1544,7 +1617,7 @@ class Cart extends Component {
                   <View>
                     {this.state.selected_address.id == '' ? (
                       <View>
-                        {this.props.is_order_type == '1' ? (
+                        {this.props.is_order == '1' ? (
                           <TouchableOpacity
                             onPress={() => this.toggleBottomaddressView()}
                             style={{
@@ -1680,7 +1753,7 @@ class Cart extends Component {
                       </View>
                     ) : (
                       <View>
-                        {this.props.is_order_type == '1' ? (
+                        {this.props.is_order == '1' ? (
                           <View
                             //  onPress={() => this.toggleBottomaddressView()}
                             style={{
@@ -1866,7 +1939,7 @@ class Cart extends Component {
                           note: this.state.spacial_cooking,
                           offer_id: this.props.offer.id,
                           offer_amount: this.TotalDiscountPrice(),
-                          order_type: this.props.is_order_type,
+                          order_type: this.props.is_order,
                           cgst: this.TotalCGST(),
                           sgst: this.TotalSGST(),
                           delivery_fee: this.state.delivery_fee.toString(),
@@ -1946,7 +2019,7 @@ const mapStateToProps = state => ({
   myItems: state.cartItems.items,
   user_id: state.userDetails.user_id,
   offer: state.cartItems.offer,
-  is_order_type: state.cartItems.is_order_type,
+  // is_order: state.cartItems.is_order_type,
 
   login_tokenn: state.userDetails.login_token,
   uid: state.userDetails.user_id,
@@ -1955,7 +2028,7 @@ const mapStateToProps = state => ({
   umo_number: state.userDetails.mo_number,
   token: state.userDetails.add_pushnotification_token,
   is_vipp: state.userDetails.is_vip,
-
+  is_order: state.cartItems.is_order_type,
   // cart: state.cartItems.currentQty,
 });
 
@@ -1975,6 +2048,7 @@ const mapDispatchToProps = {
   Logout,
   add_all_cart_details,
   add_is_vip,
+  is_order_type,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
@@ -2006,7 +2080,7 @@ const style = StyleSheet.create({
   },
   cart_container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
@@ -2022,7 +2096,7 @@ const style = StyleSheet.create({
 
   txt_heading: {
     fontSize: 14,
-    color: 'white',
+    color: 'black',
     textAlign: 'right',
     alignItems: 'center',
     marginRight: 10,

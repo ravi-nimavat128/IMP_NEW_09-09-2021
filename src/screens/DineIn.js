@@ -101,29 +101,17 @@ export class DineIn extends Component {
   renderItem = ({item, index}) => {
     return (
       <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        {index == 0 ? (
+        {index == 0 ? null : (
           <View
             style={{
-              marginVertical: 10,
-              height: 150,
-              width: 250,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Text style={{color: '#421615', fontWeight: 'bold', fontSize: 30}}>
-              {' '}
-              Select Restaurant
-            </Text>
-          </View>
-        ) : null}
-        <View
-          style={{
-            flex: 1,
-            width: Dimensions.get('screen').width / 1.1,
-            backgroundColor: 'gray',
-            height: 1,
-          }}
-        />
+              flex: 1,
+              width: Dimensions.get('screen').width / 1.1,
+              backgroundColor: 'gray',
+              height: 1,
+            }}
+          />
+        )}
+
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate('ReserveTable', {

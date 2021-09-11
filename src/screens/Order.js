@@ -1674,6 +1674,40 @@ class Order extends Component {
                 //Item Separator View
                 renderItem={this.ItemView}
                 keyExtractor={(item, index) => index.toString()}></FlatList>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginHorizontal: 20,
+                  marginBottom: 100,
+                }}>
+                <Image
+                  source={require('../assets/image/logo_main.png')}
+                  style={{
+                    height: 100,
+                    width: 100,
+                    resizeMode: 'contain',
+                  }}></Image>
+                <View style={{alignItems: 'flex-end'}}>
+                  <Image
+                    source={require('../assets/image/fssai.png')}
+                    style={{
+                      height: 60,
+                      width: 60,
+                      resizeMode: 'contain',
+                      tintColor: 'gray',
+                    }}></Image>
+                  <Text style={{fontSize: 12, color: 'gray'}}>
+                    Lic No. 1071919000188
+                  </Text>
+                  <Text style={{fontSize: 12, color: 'gray'}}>
+                    Code Version : 2
+                  </Text>
+                  <Text style={{fontSize: 12, color: 'gray'}}>
+                    App Version : 1
+                  </Text>
+                </View>
+              </View>
             </View>
           </ScrollView>
           <BottomSheet
