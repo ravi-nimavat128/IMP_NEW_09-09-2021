@@ -40,6 +40,7 @@ import ThankuReservation from '../screens/ThankuReservation';
 import ReservationConfirm from '../screens/ReservationConfirm';
 import ReserveTable from '../screens/ReserveTable';
 import ReservationDateTime from '../screens/ReservationDateTime';
+import EditContectInfo from '../screens/EditContectInfo';
 
 var home_icon = require('../assets/image/home_icon.png');
 var search_icon = require('../assets/image/search_icon.png');
@@ -302,6 +303,11 @@ export default function TabNavigation() {
         <Stack.Screen
           name="ReservationDateTime"
           component={ReservationDateTime}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="EditContectInfo"
+          component={EditContectInfo}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

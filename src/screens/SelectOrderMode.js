@@ -62,7 +62,7 @@ export class SelectOrderMode extends Component {
             <TouchableOpacity
               onPress={() => {
                 this.props.is_order_type('1');
-                this.props.navigation.replace('MainNavigator');
+                this.props.navigation.replace('EditContectInfo');
               }}
               style={{
                 marginTop: 50,
@@ -80,7 +80,7 @@ export class SelectOrderMode extends Component {
             <TouchableOpacity
               onPress={() => {
                 this.props.is_order_type('2');
-                this.props.navigation.replace('MainNavigator');
+                this.props.navigation.replace('EditContectInfo');
               }}
               style={{
                 marginTop: 20,
@@ -98,7 +98,7 @@ export class SelectOrderMode extends Component {
             <TouchableOpacity
               onPress={() => {
                 this.props.is_order_type('3');
-                this.props.navigation.replace('MainNavigator');
+                this.props.navigation.replace('EditContectInfo');
               }}
               style={{
                 marginTop: 20,
