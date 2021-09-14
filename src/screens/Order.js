@@ -56,10 +56,10 @@ var non_selected_circle = require('../assets/image/white_check_box.png');
 const Itemm = ({
   item,
   onPress,
-  // backgroundColor,
-  // textColor,
-  // borderColor,
-  // borderWidth,
+  backgroundColor,
+  textColor,
+  borderColor,
+  borderWidth,
 }) => (
   <TouchableOpacity
     onPress={onPress}
@@ -67,12 +67,14 @@ const Itemm = ({
       styles.item_menu,
       {
         justifyContent: 'space-between',
-        flexDirection: 'row',
-        alignItems: 'center',
+     
       },
+        backgroundColor,
+        textColor,
+        borderColor,borderWidth
     ]}>
     <Text style={[styles.title_menu]}>{item.name}</Text>
-    <Text style={[styles.subtitle]}>{item.total_products}</Text>
+    <Text style={[styles.subtitle]}>{item.total_products} OPTION AVAILABLE</Text>
   </TouchableOpacity>
 );
 
@@ -449,11 +451,11 @@ class Order extends Component {
   };
 
   renderItem_menu = ({item}) => {
-    // const backgroundColor =
-    //   item.id === this.props.cat_id ? '#F6F9F6' : '#F6F9F6';
-    // const color = item.id === this.props.cat_id ? 'black' : 'black';
-    // const borderWidth = item.id === this.props.cat_id ? 2 : 0;
-    // const borderColor = item.id === this.props.cat_id ? '#51190D' : 'white';
+    const backgroundColor =
+      item.id === this.props.cat_id ? '#F6F9F6' : '#F6F9F6';
+    const color = item.id === this.props.cat_id ? 'black' : 'black';
+    const borderWidth = item.id === this.props.cat_id ? 2 : 0;
+    const borderColor = item.id === this.props.cat_id ? '#51190D' : 'white';
 
     return (
       <Itemm
@@ -464,10 +466,10 @@ class Order extends Component {
           this.props.main_cat_name(item.name);
           this.setState({modalVisible: false});
         }}
-        // backgroundColor={{backgroundColor}}
-        // textColor={{color}}
-        // borderWidth={{borderWidth}}
-        // borderColor={{borderColor}}
+        backgroundColor={{backgroundColor}}
+        textColor={{color}}
+        borderWidth={{borderWidth}}
+        borderColor={{borderColor}}
       />
     );
   };
@@ -2487,7 +2489,8 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   title_menu: {
-    fontSize: 14,
+    fontSize: 17,
+    fontWeight:'bold'
   },
   subtitle: {
     fontSize: 14,

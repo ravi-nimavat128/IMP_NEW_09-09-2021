@@ -1717,7 +1717,7 @@ class Cart extends Component {
                         ) : (
                           <View
                             style={{
-                              backgroundColor: '#BE984A',
+                              backgroundColor: '#A9B5B1',
                               paddingVertical: 4,
                               marginHorizontal: 10,
                               borderRadius: 4,
@@ -1725,7 +1725,7 @@ class Cart extends Component {
                             <Text
                               style={{
                                 marginLeft: 20,
-                                color: 'white',
+                                color: 'black',
                                 fontSize: 15,
                                 fontWeight: 'bold',
                               }}>
@@ -1733,7 +1733,7 @@ class Cart extends Component {
                             </Text>
                             <Text
                               style={{
-                                color: 'white',
+                                color: 'black',
                                 fontSize: 13,
                                 marginLeft: 20,
                               }}>
@@ -1741,7 +1741,7 @@ class Cart extends Component {
                             </Text>
                             <Text
                               style={{
-                                color: 'white',
+                                color: 'black',
                                 fontSize: 10,
                                 marginLeft: 20,
                                 marginBottom: 4,
@@ -1877,7 +1877,7 @@ class Cart extends Component {
                         ) : (
                           <View
                             style={{
-                              backgroundColor: '#BE984A',
+                              backgroundColor: '#A9B5B1',
                               paddingVertical: 4,
                               marginHorizontal: 10,
                               borderRadius: 4,
@@ -1885,7 +1885,7 @@ class Cart extends Component {
                             <Text
                               style={{
                                 marginLeft: 20,
-                                color: 'white',
+                                color: 'black',
                                 fontSize: 15,
                                 fontWeight: 'bold',
                               }}>
@@ -1893,7 +1893,7 @@ class Cart extends Component {
                             </Text>
                             <Text
                               style={{
-                                color: 'white',
+                                color: 'black',
                                 fontSize: 13,
                                 marginLeft: 20,
                               }}>
@@ -1901,7 +1901,7 @@ class Cart extends Component {
                             </Text>
                             <Text
                               style={{
-                                color: 'white',
+                                color: 'black',
                                 fontSize: 10,
                                 marginLeft: 20,
                                 marginBottom: 4,
