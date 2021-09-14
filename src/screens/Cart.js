@@ -120,11 +120,11 @@ class Cart extends Component {
     //     : '',
     // });
 
-    this.onFocusSubscribe = this.props.navigation.addListener('focus', () => {
-      // Your code
-      this._getAddresses();
-      this.get_produst_ids();
-    });
+    // this.onFocusSubscribe = this.props.navigation.addListener('focus', () => {
+    //   // Your code
+    //   this._getAddresses();
+    //   this.get_produst_ids();
+    // });
   }
 
   getSingleAddress = address_id => {
@@ -649,7 +649,7 @@ class Cart extends Component {
                   marginRight: 4,
                 }}
               />
-              <Text style={{color: 'black', fontSize: 15}}>{item.name}</Text>
+              <Text style={{color: 'black', fontSize: 16}}>{item.name}</Text>
             </View>
 
             {/* {item.topping_text == '' ? null : (
@@ -1329,8 +1329,8 @@ class Cart extends Component {
 
                   <Text
                     style={{
-                      color: '#BE984A',
-                      fontSize: 12,
+                      color: '#ED505C',
+                      fontSize: 13,
                       marginTop: 15,
                       marginBottom: 140,
                     }}>
@@ -1716,40 +1716,49 @@ class Cart extends Component {
                           </TouchableOpacity>
                         ) : (
                           <View
+                          style={{
+                            backgroundColor: '#A9B5B1',
+                            paddingVertical: 4,
+                            marginHorizontal: 10,
+                            borderRadius: 4,
+                            flexDirection:'row',
+                            alignItems:'center'
+                          }}>
+                            <Image source={require('../assets/image/store_icon.png')} style={{height: 26,width: 26,marginLeft:10}} />
+                            <View style={{marginVertical:8}}>
+
+
+                            <Text
                             style={{
-                              backgroundColor: '#A9B5B1',
-                              paddingVertical: 4,
-                              marginHorizontal: 10,
-                              borderRadius: 4,
+                              marginLeft: 20,
+                              color: 'black',
+                              fontSize: 16,
+                              fontWeight: 'bold',
                             }}>
-                            <Text
-                              style={{
-                                marginLeft: 20,
-                                color: 'black',
-                                fontSize: 15,
-                                fontWeight: 'bold',
-                              }}>
-                              Takeaway
-                            </Text>
-                            <Text
-                              style={{
-                                color: 'black',
-                                fontSize: 13,
-                                marginLeft: 20,
-                              }}>
-                              The Imperial Place
-                            </Text>
-                            <Text
-                              style={{
-                                color: 'black',
-                                fontSize: 10,
-                                marginLeft: 20,
-                                marginBottom: 4,
-                              }}>
-                              Dr. Yagnik Road ,Reace Cource, Rajkot, Gujrat
-                            </Text>
-                          </View>
-                        )}
+                            Takeaway
+                          </Text>
+                          <Text
+                            style={{
+                              color: 'black',
+                              fontSize: 13,
+                              marginLeft: 20,
+                            }}>
+                            The Imperial Place
+                          </Text>
+                          <Text
+                            style={{
+                              color: 'black',
+                              fontSize: 11,
+                              marginLeft: 20,
+                              marginBottom: 4,
+                            }}>
+                            Dr. Yagnik Road ,Reace Cource, Rajkot, Gujrat
+                          </Text>
+                            </View>
+                         
+                        </View>
+                  
+                     )}
                       </View>
                     ) : (
                       <View>
@@ -1758,12 +1767,14 @@ class Cart extends Component {
                             //  onPress={() => this.toggleBottomaddressView()}
                             style={{
                               flexDirection: 'row',
-                              backgroundColor: 'skyblue',
+                              backgroundColor: '#A9B5B1',
                               marginTop: 20,
-                              height: 40,
-                              marginBottom: 10,
+                              // height: 40,
+                              marginHorizontal:10,
+                              // marginBottom: 10,
                               justifyContent: 'center',
                               alignItems: 'center',
+                              borderRadius:5
                             }}>
                             <BottomSheet
                               visible={this.state.address_visible}
@@ -1773,13 +1784,45 @@ class Cart extends Component {
                               // onBackdropPress={this.toggleBottomNavigationView}
                               //Toggling the visibility state on the clicking out side of the sheet
                             >
+
+<TouchableOpacity
+                onPress={() => {
+                  this.toggleBottomaddressView();
+                }}
+                style={{
+                  alignSelf: 'center',
+                  // paddingLeft: 35,
+                  // paddingVertical: 15,
+                  // marginRight: 15,
+                  height: 50,
+                  width: 50,
+                  borderRadius: 50 / 2,
+                  marginTop:140,
+                  marginBottom: 20,
+                  backgroundColor: '#181616',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  // paddingHorizontal: 10,
+                }}>
+                <Image
+                  source={require('../assets/image/close_icon.png')}
+                  style={{
+                    height: 13,
+                    width: 13,
+                    alignSelf: 'center',
+                    tintColor: 'white',
+                    // marginRight: 20,
+                  }}
+                />
+              </TouchableOpacity>
+          
                               <View
                                 style={{
                                   flex: 1,
                                   backgroundColor: '#FFFFFF',
                                   borderRadius: 12,
                                   width: '100%',
-                                  marginTop: 150,
+                                  marginTop: 10,
                                 }}>
                                 <Text
                                   style={{
@@ -1826,18 +1869,28 @@ class Cart extends Component {
                             </BottomSheet>
 
                             <Image
-                              source={require('../assets/image/rite_icon.png')}
+                              source={require('../assets/image/food_delivery_icon.png')}
                               style={{
-                                height: 20,
-                                width: 20,
+                                height: 30,
+                                width: 30,
                                 marginLeft: 10,
-                                tintColor: 'white',
+                                tintColor: 'black',
+                                marginVertical:26
                               }}></Image>
                             <View style={{alignSelf: 'center', flex: 1}}>
+                            <Text
+                                style={{
+                                  color: 'black',
+                                  fontWeight: 'bold',
+                                  fontSize: 16,
+                                  marginHorizontal: 20,
+                                }}>
+                                Delivery
+                              </Text>
                               <Text
                                 style={{
-                                  color: 'white',
-                                  fontWeight: 'bold',
+                                  color: 'black',
+                                  // fontWeight: 'bold',
                                   fontSize: 14,
                                   marginHorizontal: 20,
                                 }}>
@@ -1845,8 +1898,8 @@ class Cart extends Component {
                               </Text>
                               <Text
                                 style={{
-                                  color: 'white',
-                                  fontWeight: 'bold',
+                                  color: 'black',
+                                  // fontWeight: 'bold',
                                   fontSize: 11,
                                   marginHorizontal: 20,
                                 }}>
@@ -1865,7 +1918,7 @@ class Cart extends Component {
                               }}>
                               <Text
                                 style={{
-                                  color: 'skyblue',
+                                  color: 'black',
                                   fontSize: 12,
                                   paddingHorizontal: 8,
                                   paddingVertical: 3,
@@ -1876,17 +1929,22 @@ class Cart extends Component {
                           </View>
                         ) : (
                           <View
-                            style={{
-                              backgroundColor: '#A9B5B1',
-                              paddingVertical: 4,
-                              marginHorizontal: 10,
-                              borderRadius: 4,
-                            }}>
-                            <Text
+                          style={{
+                            backgroundColor: '#A9B5B1',
+                            paddingVertical: 4,
+                            marginHorizontal: 10,
+                            borderRadius: 4,
+                            flexDirection:'row',
+                            alignItems:'center'
+                          }}>
+                            <Image source={require('../assets/image/store_icon.png')} style={{height: 26,width: 26,marginLeft:10}} />
+                            <View style={{marginVertical:8}}>
+
+                              <Text
                               style={{
                                 marginLeft: 20,
                                 color: 'black',
-                                fontSize: 15,
+                                fontSize: 16,
                                 fontWeight: 'bold',
                               }}>
                               Takeaway
@@ -1902,14 +1960,17 @@ class Cart extends Component {
                             <Text
                               style={{
                                 color: 'black',
-                                fontSize: 10,
+                                fontSize: 11,
                                 marginLeft: 20,
                                 marginBottom: 4,
                               }}>
                               Dr. Yagnik Road ,Reace Cource, Rajkot, Gujrat
                             </Text>
+                              </View>
+                           
                           </View>
-                        )}
+                    
+                    )}
                       </View>
                     )}
 
@@ -1961,7 +2022,7 @@ class Cart extends Component {
                         marginTop: 8,
                         height: 60,
                         marginBottom: 70,
-                        marginHorizontal: 10,
+                        marginHorizontal: 25,
                         borderRadius: 5,
                         justifyContent: 'center',
                       }}>
@@ -1969,12 +2030,15 @@ class Cart extends Component {
                         style={{
                           flexDirection: 'row',
                           justifyContent: 'center',
+                          alignItems:'center'
                         }}>
                         <Text
                           style={{
                             fontSize: 18,
                             color: 'white',
-                            marginRight: 5,
+                            // marginRight: 8,
+                            // fontWeight:'bold',
+                            letterSpacing: 2
                           }}>
                           Make Payment
                         </Text>
@@ -1985,7 +2049,8 @@ class Cart extends Component {
                             resizeMode: 'center',
                             width: 8,
                             marginTop: 3,
-                            marginRight: 20,
+                            marginLeft:8,
+                            // marginRight: 20,
                             alignSelf: 'center',
                             tintColor: 'white',
                           }}></Image>

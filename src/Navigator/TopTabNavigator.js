@@ -312,6 +312,7 @@ class TopTabNavigator extends Component {
                   }}
                 />
               </Pressable>
+          
             </View>
             <View
               style={{
@@ -450,6 +451,15 @@ class TopTabNavigator extends Component {
                     }}>
                     DELIVERY
                   </Text>
+                  <Text
+                    style={{
+                      fontSize: 8,
+                      // fontWeight: 'bold',
+                      color: focused ? '#CA0227' : 'gray',
+                      
+                    }}>
+                    9:00AM TO 10:00PM
+                  </Text>
                 </View>
               ),
               // tabBarIcon: ({focused, color, size}) => (
@@ -517,6 +527,15 @@ class TopTabNavigator extends Component {
                     }}>
                     TAKEAWAY
                   </Text>
+                  <Text
+                    style={{
+                      fontSize: 8,
+                      // fontWeight: 'bold',
+                      color: focused ? '#CA0227' : 'gray',
+                      
+                    }}>
+                    9:00AM TO 10:00PM
+                  </Text>
                 </View>
               ),
               // tabBarIcon: ({focused, color, size}) => (
@@ -582,6 +601,15 @@ class TopTabNavigator extends Component {
                       color: focused ? '#CA0227' : 'gray',
                     }}>
                     DINE-IN
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 8,
+                      // fontWeight: 'bold',
+                      color: focused ? '#CA0227' : 'gray',
+                      
+                    }}>
+                    9:00AM TO 10:00PM
                   </Text>
                 </View>
               ),

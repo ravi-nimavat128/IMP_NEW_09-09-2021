@@ -1310,13 +1310,14 @@ class Order extends Component {
           alignSelf: 'center',
           // borderWidth: 1,
           marginRight: 25,
-          height: 28,
-          width: 75,
+          height: 39,
+          width: 104,
           marginTop: item.is_options == 0 && item.topping_data == 0 ? 0 : 8,
           borderWidth: 1,
           borderRadius: 7,
           backgroundColor: '#FDF6F4',
-          borderColor: '#FFC4C7',
+          borderColor: 'red',
+          marginTop:-10,
           // borderBottomWidth: 0,
           // shadowColor: '#FFC4C7',
           // shadowOffset: {width: 0, height: 0.5},
@@ -1332,7 +1333,7 @@ class Order extends Component {
           <Text
             style={{
               color: '#EC5865',
-              fontSize: 13,
+              fontSize: 16,
               fontWeight: 'bold',
               alignSelf: 'center',
               alignSelf: 'center',
@@ -1348,7 +1349,7 @@ class Order extends Component {
         <Text
           style={{
             color: '#EC5865',
-            fontSize: 15,
+            fontSize: 17,
             // marginTop: -12,
             // marginLeft: 15,
             opacity: 0.7,
@@ -1374,9 +1375,11 @@ class Order extends Component {
       <View
         style={{
           flexDirection: 'column',
-          marginVertical: 7,
+          marginVertical: 15,
           marginTop: index == 0 ? -18 : null,
         }}>
+
+
         {index == 0 ? (
           <View>
             <View
@@ -1391,7 +1394,7 @@ class Order extends Component {
               style={{
                 fontWeight: 'bold',
                 color: '#BE984A',
-                fontSize: 14,
+                fontSize: 16,
                 marginTop: 30,
                 marginLeft: 12,
                 marginVertical: 4,
@@ -1522,8 +1525,8 @@ class Order extends Component {
                     );
                   }
                 }}
-                totalWidth={82}
-                totalHeight={28}
+                totalWidth={95}
+                totalHeight={35}
                 iconSize={10}
                 minValue={1}
                 borderColor={'#00000000'}
@@ -1531,7 +1534,7 @@ class Order extends Component {
                   backgroundColor: '#C8B9B2',
                   color: 'black',
                   alignSelf: 'center',
-                  height: 26,
+                  height: 33,
                   justifyContent: 'center',
                 }}
                 rounded
@@ -1546,7 +1549,7 @@ class Order extends Component {
             )}
 
             {item.is_options == 0 && item.topping_data == 0 ? null : (
-              <Text style={{color: '#ED505C', fontSize: 11, marginLeft: 4}}>
+              <Text style={{color: '#ED505C', fontSize: 11, marginLeft: 14}}>
                 customisable
               </Text>
             )}
@@ -2199,10 +2202,10 @@ class Order extends Component {
           </TouchableOpacity>
           {this.props.myItems.length == 0 ? null : (
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Cart')}
-              // onPress={() =>
-              //   this.setState({cart_bottomsheet: !this.state.cart_bottomsheet})
-              // }
+              // onPress={() => this.props.navigation.navigate('Cart')}
+              onPress={() =>
+                this.setState({cart_bottomsheet: !this.state.cart_bottomsheet})
+              }
               style={{
                 width: '95%',
                 height: 60,
@@ -2278,7 +2281,7 @@ class Order extends Component {
               </View>
             </TouchableOpacity>
           )}
-          {/* <BottomSheet
+          <BottomSheet
             visible={this.state.cart_bottomsheet}
             //setting the visibility state of the bottom shee
             // onBackButtonPress={this.toggle_c_Bottomsheet}
@@ -2286,10 +2289,44 @@ class Order extends Component {
             // onBackdropPress={this.toggleBottomNavigationView}
             //Toggling the visibility state on the clicking out side of the sheet
           >
-            <View style={{width: 250, height: 400}}>
+            <View style={{width: Dimensions.get('screen').width,height: '88%',borderRadius:15}}>
+            <Pressable
+                onPress={() => {
+                  this.setState({cart_bottomsheet:!this.state.cart_bottomsheet})
+                }}
+                style={{
+                  alignSelf: 'center',
+                  // paddingLeft: 35,
+                  // paddingVertical: 15,
+                  // marginRight: 15,
+                  height: 50,
+                  width: 50,
+                  borderRadius: 50 / 2,
+                  marginBottom: 20,
+                  backgroundColor: '#181616',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  // paddingHorizontal: 10,
+                }}>
+                <Image
+                  source={require('../assets/image/close_icon.png')}
+                  style={{
+                    height: 13,
+                    width: 13,
+                    alignSelf: 'center',
+                    tintColor: 'white',
+                    // marginRight: 20,
+                  }}
+                />
+              </Pressable>
+          
+              <View style={{borderRadius:15,flex:1}}>
+
               <Cart />
+              </View>
+
             </View>
-          </BottomSheet> */}
+          </BottomSheet>
         </View>
       </SafeAreaView>
     );
@@ -2502,7 +2539,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderWidth: 1,
     marginRight: 24,
-    width: 85,
+    width: 104,
+    marginTop:-10,
     justifyContent: 'center',
   },
   modalView: {
