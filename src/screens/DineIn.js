@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import {
   View,
   Text,
@@ -15,23 +16,9 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 // var img1 = require('../assets/image/AMBIENCE.png');
 var img2 = require('../assets/image/COURTYARD.png');
-// var img3 = require('../assets/image/DELICACY.png');
-// var img4 = require('../assets/image/ELEGANCE.png');
-// var img5 = require('../assets/image/EXPRESSION.png');
-// var img6 = require('../assets/image/FITNEZZ.png');
-// var img7 = require('../assets/image/IMPRESSION.png');
-// var img8 = require('../assets/image/LEGEND.png');
-// var img9 = require('../assets/image/MAYFAIR.png');
-// var img10 = require('../assets/image/MEZZO_MEZZO.png');
-// var img11 = require('../assets/image/OASIS.png');
-// var img12 = require('../assets/image/OPULENCE.png');
-// var img13 = require('../assets/image/OUTLOOK.png');
-// var img14 = require('../assets/image/REFLECTION.png');
-// var img15 = require('../assets/image/REGAL_ROOM.png');
-// var img16 = require('../assets/image/REGENT ROOM.png');
+
 var img17 = require('../assets/image/SENSO.png');
 var img18 = require('../assets/image/STATTUS.png');
-// var img19 = require('../assets/image/VOGUE.png');
 
 const Data = [
   {id: 1, img: img2, name: 'Courtyard'},
@@ -66,6 +53,13 @@ export class DineIn extends Component {
   }
 
   componentDidMount() {
+    // try {
+    //   const products = await RNIap.getProducts(itemSkus);
+    //   this.setState({ products });
+    // } catch(err) {
+    //   console.warn(err); // standardized err.code and err.message available
+    // }
+
     this.get_r_data();
     this.onFocusSubscribe = this.props.navigation.addListener('focus', () => {
       // Your code
@@ -87,7 +81,13 @@ export class DineIn extends Component {
         if (Response.data.status == 1) {
           console.log(Response.data.status);
           this.setState({
-            r_data: Response.data.result,
+            r_data: Response.data.result.map(i => {
+              return {
+                ...i,
+                time: '09:00 AM TO 10:00 PM',
+              };
+            }),
+
             isLoading: false,
           });
         } else {
@@ -127,6 +127,10 @@ export class DineIn extends Component {
               width: 250,
               resizeMode: 'contain',
             }}></Image>
+
+          <Text style={{alignSelf: 'center', marginBottom: 25}}>
+            {item.time}
+          </Text>
         </TouchableOpacity>
       </View>
     );

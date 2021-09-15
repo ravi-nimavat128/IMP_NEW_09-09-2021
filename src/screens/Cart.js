@@ -106,6 +106,7 @@ class Cart extends Component {
         long: 0,
       },
 
+      takeaway_pickup_visible: false,
       // myNewItems: null,
     };
   }
@@ -1332,7 +1333,7 @@ class Cart extends Component {
                       color: '#ED505C',
                       fontSize: 13,
                       marginTop: 15,
-                      marginBottom: 140,
+                      marginBottom: 250,
                     }}>
                     Order once placed cannot be cancelled and are non-refundable
                   </Text>
@@ -1716,49 +1717,48 @@ class Cart extends Component {
                           </TouchableOpacity>
                         ) : (
                           <View
-                          style={{
-                            backgroundColor: '#A9B5B1',
-                            paddingVertical: 4,
-                            marginHorizontal: 10,
-                            borderRadius: 4,
-                            flexDirection:'row',
-                            alignItems:'center'
-                          }}>
-                            <Image source={require('../assets/image/store_icon.png')} style={{height: 26,width: 26,marginLeft:10}} />
-                            <View style={{marginVertical:8}}>
-
-
-                            <Text
                             style={{
-                              marginLeft: 20,
-                              color: 'black',
-                              fontSize: 16,
-                              fontWeight: 'bold',
+                              backgroundColor: '#A9B5B1',
+                              paddingVertical: 4,
+                              marginHorizontal: 10,
+                              borderRadius: 4,
+                              flexDirection: 'row',
+                              alignItems: 'center',
                             }}>
-                            Takeaway
-                          </Text>
-                          <Text
-                            style={{
-                              color: 'black',
-                              fontSize: 13,
-                              marginLeft: 20,
-                            }}>
-                            The Imperial Place
-                          </Text>
-                          <Text
-                            style={{
-                              color: 'black',
-                              fontSize: 11,
-                              marginLeft: 20,
-                              marginBottom: 4,
-                            }}>
-                            Dr. Yagnik Road ,Reace Cource, Rajkot, Gujrat
-                          </Text>
+                            <Image
+                              source={require('../assets/image/store_icon.png')}
+                              style={{height: 26, width: 26, marginLeft: 10}}
+                            />
+                            <View style={{marginVertical: 8}}>
+                              <Text
+                                style={{
+                                  marginLeft: 20,
+                                  color: 'black',
+                                  fontSize: 16,
+                                  fontWeight: 'bold',
+                                }}>
+                                Takeaway
+                              </Text>
+                              <Text
+                                style={{
+                                  color: 'black',
+                                  fontSize: 13,
+                                  marginLeft: 20,
+                                }}>
+                                The Imperial Place
+                              </Text>
+                              <Text
+                                style={{
+                                  color: 'black',
+                                  fontSize: 11,
+                                  marginLeft: 20,
+                                  marginBottom: 4,
+                                }}>
+                                Dr. Yagnik Road ,Reace Cource, Rajkot, Gujrat
+                              </Text>
                             </View>
-                         
-                        </View>
-                  
-                     )}
+                          </View>
+                        )}
                       </View>
                     ) : (
                       <View>
@@ -1770,11 +1770,11 @@ class Cart extends Component {
                               backgroundColor: '#A9B5B1',
                               marginTop: 20,
                               // height: 40,
-                              marginHorizontal:10,
+                              marginHorizontal: 10,
                               // marginBottom: 10,
                               justifyContent: 'center',
                               alignItems: 'center',
-                              borderRadius:5
+                              borderRadius: 5,
                             }}>
                             <BottomSheet
                               visible={this.state.address_visible}
@@ -1784,38 +1784,37 @@ class Cart extends Component {
                               // onBackdropPress={this.toggleBottomNavigationView}
                               //Toggling the visibility state on the clicking out side of the sheet
                             >
+                              <TouchableOpacity
+                                onPress={() => {
+                                  this.toggleBottomaddressView();
+                                }}
+                                style={{
+                                  alignSelf: 'center',
+                                  // paddingLeft: 35,
+                                  // paddingVertical: 15,
+                                  // marginRight: 15,
+                                  height: 50,
+                                  width: 50,
+                                  borderRadius: 50 / 2,
+                                  marginTop: 140,
+                                  marginBottom: 20,
+                                  backgroundColor: '#181616',
+                                  justifyContent: 'center',
+                                  alignItems: 'center',
+                                  // paddingHorizontal: 10,
+                                }}>
+                                <Image
+                                  source={require('../assets/image/close_icon.png')}
+                                  style={{
+                                    height: 13,
+                                    width: 13,
+                                    alignSelf: 'center',
+                                    tintColor: 'white',
+                                    // marginRight: 20,
+                                  }}
+                                />
+                              </TouchableOpacity>
 
-<TouchableOpacity
-                onPress={() => {
-                  this.toggleBottomaddressView();
-                }}
-                style={{
-                  alignSelf: 'center',
-                  // paddingLeft: 35,
-                  // paddingVertical: 15,
-                  // marginRight: 15,
-                  height: 50,
-                  width: 50,
-                  borderRadius: 50 / 2,
-                  marginTop:140,
-                  marginBottom: 20,
-                  backgroundColor: '#181616',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  // paddingHorizontal: 10,
-                }}>
-                <Image
-                  source={require('../assets/image/close_icon.png')}
-                  style={{
-                    height: 13,
-                    width: 13,
-                    alignSelf: 'center',
-                    tintColor: 'white',
-                    // marginRight: 20,
-                  }}
-                />
-              </TouchableOpacity>
-          
                               <View
                                 style={{
                                   flex: 1,
@@ -1875,10 +1874,10 @@ class Cart extends Component {
                                 width: 30,
                                 marginLeft: 10,
                                 tintColor: 'black',
-                                marginVertical:26
+                                marginVertical: 26,
                               }}></Image>
                             <View style={{alignSelf: 'center', flex: 1}}>
-                            <Text
+                              <Text
                                 style={{
                                   color: 'black',
                                   fontWeight: 'bold',
@@ -1929,48 +1928,48 @@ class Cart extends Component {
                           </View>
                         ) : (
                           <View
-                          style={{
-                            backgroundColor: '#A9B5B1',
-                            paddingVertical: 4,
-                            marginHorizontal: 10,
-                            borderRadius: 4,
-                            flexDirection:'row',
-                            alignItems:'center'
-                          }}>
-                            <Image source={require('../assets/image/store_icon.png')} style={{height: 26,width: 26,marginLeft:10}} />
-                            <View style={{marginVertical:8}}>
-
+                            style={{
+                              backgroundColor: '#A9B5B1',
+                              paddingVertical: 4,
+                              marginHorizontal: 10,
+                              borderRadius: 4,
+                              flexDirection: 'row',
+                              alignItems: 'center',
+                            }}>
+                            <Image
+                              source={require('../assets/image/store_icon.png')}
+                              style={{height: 26, width: 26, marginLeft: 10}}
+                            />
+                            <View style={{marginVertical: 8}}>
                               <Text
-                              style={{
-                                marginLeft: 20,
-                                color: 'black',
-                                fontSize: 16,
-                                fontWeight: 'bold',
-                              }}>
-                              Takeaway
-                            </Text>
-                            <Text
-                              style={{
-                                color: 'black',
-                                fontSize: 13,
-                                marginLeft: 20,
-                              }}>
-                              The Imperial Place
-                            </Text>
-                            <Text
-                              style={{
-                                color: 'black',
-                                fontSize: 11,
-                                marginLeft: 20,
-                                marginBottom: 4,
-                              }}>
-                              Dr. Yagnik Road ,Reace Cource, Rajkot, Gujrat
-                            </Text>
-                              </View>
-                           
+                                style={{
+                                  marginLeft: 20,
+                                  color: 'black',
+                                  fontSize: 16,
+                                  fontWeight: 'bold',
+                                }}>
+                                Takeaway
+                              </Text>
+                              <Text
+                                style={{
+                                  color: 'black',
+                                  fontSize: 13,
+                                  marginLeft: 20,
+                                }}>
+                                The Imperial Place
+                              </Text>
+                              <Text
+                                style={{
+                                  color: 'black',
+                                  fontSize: 11,
+                                  marginLeft: 20,
+                                  marginBottom: 4,
+                                }}>
+                                Dr. Yagnik Road ,Reace Cource, Rajkot, Gujrat
+                              </Text>
+                            </View>
                           </View>
-                    
-                    )}
+                        )}
                       </View>
                     )}
 
@@ -1979,41 +1978,48 @@ class Cart extends Component {
                         // this.get_produst_ids(() => this.PlaceORder());
                         // this.TOPay();
                         // this.TotalItemPrice();
-                        this.state.selected_address.id == ''
-                          ? alert('please select a delivery location')
-                          : // : this.PlaceORder();
-                            this.props.navigation.navigate('PaymentOption');
 
-                        this.props.add_all_cart_details({
-                          product_id: this.props.myItems
-                            .map(i => i.id)
-                            .join(','),
-                          amount: this.props.myItems
-                            .map(i => i.price)
-                            .join(','),
-                          qty: this.props.myItems.map(i => i.qty).join(','),
-                          total: this.props.myItems
-                            .map(i => i.qty * i.price)
-                            .join(','),
-                          sub_total: this.TotalItemPrice(),
-                          total_amount: this.TOPay(),
-                          note: this.state.spacial_cooking,
-                          offer_id: this.props.offer.id,
-                          offer_amount: this.TotalDiscountPrice(),
-                          order_type: this.props.is_order,
-                          cgst: this.TotalCGST(),
-                          sgst: this.TotalSGST(),
-                          delivery_fee: this.state.delivery_fee.toString(),
-                          standard_fee: this.state.standard_fee.toString(),
-                          address1: this.state.selected_address.address1.toString(),
-                          address2: this.state.selected_address.address2.toString(),
-                          landmark: this.state.selected_address.landmark.toString(),
-                          address_type: this.state.selected_address.type.toString(),
-                          topping_id: this.state.topping_ids.toString(),
-                          extra_topping_id_one: this.state.topping_array_one_ids.toString(),
-                          extra_topping_id_two: this.state.topping_array_two_ids.toString(),
-                          extra_topping_id_three: this.state.topping_array_three_ids.toString(),
-                        });
+                        if (this.props.is_order == '2') {
+                          this.setState({
+                            takeaway_pickup_visible: true,
+                          });
+                        } else {
+                          this.state.selected_address.id == ''
+                            ? alert('please select a delivery location')
+                            : // : this.PlaceORder();
+                              this.props.navigation.navigate('PaymentOption');
+
+                          this.props.add_all_cart_details({
+                            product_id: this.props.myItems
+                              .map(i => i.id)
+                              .join(','),
+                            amount: this.props.myItems
+                              .map(i => i.price)
+                              .join(','),
+                            qty: this.props.myItems.map(i => i.qty).join(','),
+                            total: this.props.myItems
+                              .map(i => i.qty * i.price)
+                              .join(','),
+                            sub_total: this.TotalItemPrice(),
+                            total_amount: this.TOPay(),
+                            note: this.state.spacial_cooking,
+                            offer_id: this.props.offer.id,
+                            offer_amount: this.TotalDiscountPrice(),
+                            order_type: this.props.is_order,
+                            cgst: this.TotalCGST(),
+                            sgst: this.TotalSGST(),
+                            delivery_fee: this.state.delivery_fee.toString(),
+                            standard_fee: this.state.standard_fee.toString(),
+                            address1: this.state.selected_address.address1.toString(),
+                            address2: this.state.selected_address.address2.toString(),
+                            landmark: this.state.selected_address.landmark.toString(),
+                            address_type: this.state.selected_address.type.toString(),
+                            topping_id: this.state.topping_ids.toString(),
+                            extra_topping_id_one: this.state.topping_array_one_ids.toString(),
+                            extra_topping_id_two: this.state.topping_array_two_ids.toString(),
+                            extra_topping_id_three: this.state.topping_array_three_ids.toString(),
+                          });
+                        }
 
                         // this.NewPlaceOrder();
                       }}
@@ -2030,7 +2036,7 @@ class Cart extends Component {
                         style={{
                           flexDirection: 'row',
                           justifyContent: 'center',
-                          alignItems:'center'
+                          alignItems: 'center',
                         }}>
                         <Text
                           style={{
@@ -2038,7 +2044,7 @@ class Cart extends Component {
                             color: 'white',
                             // marginRight: 8,
                             // fontWeight:'bold',
-                            letterSpacing: 2
+                            letterSpacing: 2,
                           }}>
                           Make Payment
                         </Text>
@@ -2049,7 +2055,7 @@ class Cart extends Component {
                             resizeMode: 'center',
                             width: 8,
                             marginTop: 3,
-                            marginLeft:8,
+                            marginLeft: 8,
                             // marginRight: 20,
                             alignSelf: 'center',
                             tintColor: 'white',
@@ -2060,6 +2066,119 @@ class Cart extends Component {
                 )}
               </View>
             </View>
+            <BottomSheet
+              visible={this.state.takeaway_pickup_visible}
+              //setting the visibility state of the bottom shee
+              onBackButtonPress={() => {
+                this.setState({
+                  takeaway_pickup_visible: !this.state.takeaway_pickup_visible,
+                });
+              }}
+              onBackdropPress={() => {
+                this.setState({
+                  takeaway_pickup_visible: !this.state.takeaway_pickup_visible,
+                });
+              }}>
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flex: 1,
+                }}>
+                <View
+                  style={{
+                    height: '60%',
+                    width: '80%',
+                    // marginVertical: 50,
+                    // marginHorizontal: 100,
+                    borderRadius: 9,
+                    backgroundColor: 'white',
+                    alignItems: 'center',
+                  }}>
+                  <Text
+                    style={{
+                      color: 'black',
+                      marginTop: 20,
+                      marginHorizontal: 10,
+                      textAlign: 'center',
+                      fontSize: 16,
+                    }}>
+                    You have to collect the order from{'\n'}
+                    {
+                      <Text
+                        style={{
+                          color: 'black',
+                          fontWeight: 'bold',
+                          fontSize: 16,
+                        }}>
+                        Imperial Palace
+                      </Text>
+                    }
+                    , Dr.Yagnik Road
+                  </Text>
+                  <Image
+                    source={require('../assets/image/takeyaway_image_pickup.png')}
+                    style={{
+                      height: 150,
+                      width: 200,
+                      marginTop: 15,
+                      marginBottom: 15,
+                      marginLeft: 10,
+                      resizeMode: 'contain',
+                    }}></Image>
+
+                  <Text
+                    style={{textAlign: 'center', color: 'black', fontSize: 18}}>
+                    Delivery partners are not assigned {'\n'}for pickup orders
+                  </Text>
+                  <TouchableOpacity
+                    style={{
+                      width: '90%',
+                      marginHorizontal: 15,
+                      marginTop: 35,
+                      backgroundColor: '#ED505C',
+                      height: 50,
+                      borderRadius: 5,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontSize: 18,
+                        fontWeight: 'bold',
+                      }}>
+                      Proceed with pickup
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.props.is_order_type('1');
+                      this.setState({takeaway_pickup_visible: false});
+                    }}
+                    style={{
+                      width: '90%',
+                      marginHorizontal: 15,
+                      marginTop: 20,
+                      borderColor: '#ED505C',
+                      height: 50,
+                      borderWidth: 1,
+                      borderRadius: 5,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        color: 'black',
+                        fontWeight: 'bold',
+                        fontSize: 18,
+                      }}>
+                      Get delivery instead
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </BottomSheet>
           </SafeAreaView>
         ) : (
           <View
