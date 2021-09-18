@@ -121,11 +121,11 @@ class Cart extends Component {
     //     : '',
     // });
 
-    // this.onFocusSubscribe = this.props.navigation.addListener('focus', () => {
-    //   // Your code
-    //   this._getAddresses();
-    //   this.get_produst_ids();
-    // });
+    this.onFocusSubscribe = this.props.navigation.addListener('focus', () => {
+      // Your code
+      this._getAddresses();
+      this.get_produst_ids();
+    });
   }
 
   getSingleAddress = address_id => {
@@ -1625,10 +1625,12 @@ class Cart extends Component {
                               flexDirection: 'row',
                               backgroundColor: 'orange',
                               marginTop: 20,
-                              height: 40,
+                              marginHorizontal: 30,
+                              height: 50,
                               marginBottom: 10,
                               justifyContent: 'center',
                               alignItems: 'center',
+                              borderRadius: 8,
                             }}>
                             <BottomSheet
                               visible={this.state.address_visible}
@@ -1697,23 +1699,26 @@ class Cart extends Component {
                                 width: 20,
                                 tintColor: 'white',
                               }}></Image>
-                            <Text
-                              style={{
-                                color: 'white',
-                                fontWeight: 'bold',
-                                fontSize: 16,
-                                marginHorizontal: 20,
-                              }}>
-                              SELECT DELIVERY LOCATION
-                            </Text>
-                            <Image
-                              source={require('../assets/image/next.png')}
-                              style={{
-                                height: 20,
-                                width: 20,
-                                tintColor: 'white',
-                                marginLeft: 15,
-                              }}></Image>
+
+                            <View style={{flexDirection: 'row'}}>
+                              <Text
+                                style={{
+                                  color: 'white',
+                                  fontWeight: 'bold',
+                                  fontSize: 16,
+                                  marginLeft: 5,
+                                }}>
+                                SELECT DELIVERY LOCATION
+                              </Text>
+                              <Image
+                                source={require('../assets/image/next.png')}
+                                style={{
+                                  height: 20,
+                                  width: 20,
+                                  tintColor: 'white',
+                                  // marginLeft: -15,
+                                }}></Image>
+                            </View>
                           </TouchableOpacity>
                         ) : (
                           <View

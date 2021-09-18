@@ -135,6 +135,7 @@ export class ReserveTable extends Component {
   };
 
   render() {
+    console.log('img', this.props.route.params.img);
     console.log(JSON.stringify(this.state.slider_data, null, 2));
     console.log('res iddddddd', JSON.stringify(this.state.res_id, null, 2));
     console.log(
@@ -322,6 +323,7 @@ export class ReserveTable extends Component {
           onPress={() =>
             this.props.navigation.navigate('ReservationDateTime', {
               id: this.state.res_id,
+              img: this.props.route.params.img,
             })
           }
           style={{

@@ -20,6 +20,7 @@ import {
   Pressable,
   TouchableWithoutFeedback,
   Dimensions,
+  Linking,
 } from 'react-native';
 
 import NumericInput from 'react-native-numeric-input';
@@ -45,7 +46,7 @@ import {
 } from '../reducers/cartItems/actions';
 import {addLoginToken} from '../reducers/UserReducer/user_actions';
 import {BottomSheet} from 'react-native-btr';
-import Cart from './Cart';
+import Cart2 from './cart2';
 
 var back_arrow = require('../assets/image/back_arrow.png');
 var vag_icon = require('../assets/image/vag.png');
@@ -67,14 +68,16 @@ const Itemm = ({
       styles.item_menu,
       {
         justifyContent: 'space-between',
-     
       },
-        backgroundColor,
-        textColor,
-        borderColor,borderWidth
+      backgroundColor,
+      textColor,
+      borderColor,
+      borderWidth,
     ]}>
     <Text style={[styles.title_menu]}>{item.name}</Text>
-    <Text style={[styles.subtitle]}>{item.total_products} OPTION AVAILABLE</Text>
+    <Text style={[styles.subtitle]}>
+      {item.total_products} OPTION AVAILABLE
+    </Text>
   </TouchableOpacity>
 );
 
@@ -1317,7 +1320,7 @@ class Order extends Component {
           borderRadius: 7,
           backgroundColor: '#FDF6F4',
           borderColor: 'red',
-          marginTop:-10,
+          marginTop: -10,
           // borderBottomWidth: 0,
           // shadowColor: '#FFC4C7',
           // shadowOffset: {width: 0, height: 0.5},
@@ -1349,7 +1352,7 @@ class Order extends Component {
         <Text
           style={{
             color: '#EC5865',
-            fontSize: 17,
+            fontSize: 16,
             // marginTop: -12,
             // marginLeft: 15,
             opacity: 0.7,
@@ -1378,8 +1381,6 @@ class Order extends Component {
           marginVertical: 15,
           marginTop: index == 0 ? -18 : null,
         }}>
-
-
         {index == 0 ? (
           <View>
             <View
@@ -1452,7 +1453,7 @@ class Order extends Component {
               <Text
                 style={{
                   color: 'black',
-                  fontSize: 16,
+                  fontSize: 17,
                   marginLeft: 25,
                   fontWeight: 'bold',
                   // opacity: 0.9,
@@ -1503,12 +1504,16 @@ class Order extends Component {
                       newitem => item.id == newitem.id,
                     )[0]
                   ) {
-                    this.props.manage_qty(
-                      e,
-                      this.props.myItems.filter(
-                        newitem => item.id == newitem.id,
-                      )[0].id,
-                    );
+                    if (item.is_options == 0 && item.topping_data == 0) {
+                      this.toggle_c_Bottomsheet();
+                    } else {
+                      this.props.manage_qty(
+                        e,
+                        this.props.myItems.filter(
+                          newitem => item.id == newitem.id,
+                        )[0].id,
+                      );
+                    }
                   }
                 }}
                 onLimitReached={e => {
@@ -1616,26 +1621,31 @@ class Order extends Component {
         <StatusBar barStyle="light-content" backgroundColor={'black'} />
 
         <View style={style.header}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.goBack()}
-            style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Image source={back_arrow} style={style.back_img} />
-            <Text
-              style={{
-                color: 'black',
-                fontSize: 15,
-                fontWeight: 'bold',
-                marginLeft: 12,
-              }}>
-              {this.props.cat_name}
-            </Text>
-          </TouchableOpacity>
+          <View>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.goBack()}
+              style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Image source={back_arrow} style={style.back_img} />
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: 15,
+                  fontWeight: 'bold',
+                  marginLeft: 12,
+                }}>
+                {this.props.cat_name}
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <Image
+            source={require('../assets/image/share_icon_png.png')}
+            style={{height: 25, width: 25, marginRight: 15}}></Image>
           {/* <View style={{flex: 1}}></View> */}
           {/* <Text style={style.txt_heading}>OPEN 24 HOURS</Text> */}
         </View>
         <View style={style.sub_container}>
           <ScrollView>
-            <Text
+            {/* <Text
               style={{
                 color: 'black',
                 fontSize: 22,
@@ -1644,13 +1654,13 @@ class Order extends Component {
                 marginTop: 8,
               }}>
               {this.props.cat_name}
-            </Text>
+            </Text> */}
 
             <View
               style={{
                 borderBottomColor: 'black',
                 borderBottomWidth: 1,
-                marginTop: 15,
+                // marginTop: 15,
                 opacity: 0.1,
               }}
             />
@@ -1686,13 +1696,64 @@ class Order extends Component {
                   marginHorizontal: 20,
                   marginBottom: 100,
                 }}>
-                <Image
-                  source={require('../assets/image/logo_main.png')}
-                  style={{
-                    height: 100,
-                    width: 100,
-                    resizeMode: 'contain',
-                  }}></Image>
+                <View>
+                  <Image
+                    source={require('../assets/image/logo_main.png')}
+                    style={{
+                      height: 100,
+                      width: 100,
+                      resizeMode: 'contain',
+                    }}></Image>
+                  <View
+                    style={{
+                      marginTop: 15,
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginLeft: -10,
+                    }}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        Linking.openURL('https://www.facebook.com/imp.palace/')
+                      }>
+                      <Image
+                        source={require('../assets/image/fb_logo_png.png')}
+                        style={{
+                          height: 25,
+                          width: 25,
+                          resizeMode: 'contain',
+                          tintColor: 'gray',
+                        }}></Image>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() =>
+                        Linking.openURL(
+                          'https://www.instagram.com/imperialpalacerajkot/?hl=en',
+                        )
+                      }>
+                      <Image
+                        source={require('../assets/image/instagram_logo_png.png')}
+                        style={{
+                          height: 25,
+                          width: 25,
+                          marginHorizontal: 15,
+                          resizeMode: 'contain',
+                          tintColor: 'gray',
+                        }}></Image>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => Linking.openURL(`tel:${'+912812480000'}`)}>
+                      <Image
+                        source={require('../assets/image/phone_logo_png.png')}
+                        style={{
+                          height: 25,
+                          width: 25,
+                          marginLeft: 5,
+                          resizeMode: 'contain',
+                          tintColor: 'gray',
+                        }}></Image>
+                    </TouchableOpacity>
+                  </View>
+                </View>
                 <View style={{alignItems: 'flex-end'}}>
                   <Image
                     source={require('../assets/image/fssai.png')}
@@ -1703,10 +1764,10 @@ class Order extends Component {
                       tintColor: 'gray',
                     }}></Image>
                   <Text style={{fontSize: 12, color: 'gray'}}>
-                    Lic No. 1071919000188
+                    Lic No. 10014021001180
                   </Text>
                   <Text style={{fontSize: 12, color: 'gray'}}>
-                    Code Version : 2
+                    Code Version : 1
                   </Text>
                   <Text style={{fontSize: 12, color: 'gray'}}>
                     App Version : 1
@@ -2289,10 +2350,17 @@ class Order extends Component {
             // onBackdropPress={this.toggleBottomNavigationView}
             //Toggling the visibility state on the clicking out side of the sheet
           >
-            <View style={{width: Dimensions.get('screen').width,height: '88%',borderRadius:15}}>
-            <Pressable
+            <View
+              style={{
+                width: Dimensions.get('screen').width,
+                height: '88%',
+                borderRadius: 15,
+              }}>
+              <Pressable
                 onPress={() => {
-                  this.setState({cart_bottomsheet:!this.state.cart_bottomsheet})
+                  this.setState({
+                    cart_bottomsheet: !this.state.cart_bottomsheet,
+                  });
                 }}
                 style={{
                   alignSelf: 'center',
@@ -2319,12 +2387,10 @@ class Order extends Component {
                   }}
                 />
               </Pressable>
-          
-              <View style={{borderRadius:15,flex:1}}>
 
-              <Cart />
+              <View style={{borderRadius: 15, flex: 1}}>
+                <Cart2 />
               </View>
-
             </View>
           </BottomSheet>
         </View>
@@ -2366,9 +2432,10 @@ const style = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'space-between',
+    alignItems: 'center',
     width: '100%',
-    marginTop: 30,
-    marginBottom: 15,
+    marginTop: 15,
+    marginBottom: 7,
   },
   back_img: {
     height: 17,
@@ -2527,7 +2594,7 @@ const styles = StyleSheet.create({
   },
   title_menu: {
     fontSize: 17,
-    fontWeight:'bold'
+    fontWeight: 'bold',
   },
   subtitle: {
     fontSize: 14,
@@ -2540,7 +2607,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginRight: 24,
     width: 104,
-    marginTop:-10,
+    marginTop: -10,
     justifyContent: 'center',
   },
   modalView: {

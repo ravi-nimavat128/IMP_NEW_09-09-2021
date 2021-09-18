@@ -260,7 +260,7 @@ class EditAddress extends Component {
             annotations
             // showsUserLocation={true}
             showsMyLocationButton={true}
-            onRegionChangeComplete={this.onChangeValue}
+            // onRegionChangeComplete={this.onChangeValue}
             ref={ref => (this.map = ref)}>
             {/* <Marker
               coordinate={{latitude: 22.295, longitude: 70.7908}}
@@ -268,7 +268,7 @@ class EditAddress extends Component {
             /> */}
           </MapView>
 
-          <View
+          {/* <View
             style={{
               top: '50%',
               left: '50%',
@@ -279,7 +279,7 @@ class EditAddress extends Component {
             <Image
               source={require('../assets/image/map_marker.png')}
               style={{height: 48, width: 48}}></Image>
-          </View>
+          </View> */}
         </View>
         <View
           style={{

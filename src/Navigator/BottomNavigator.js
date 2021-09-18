@@ -5,6 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {platform} from 'react-native';
 
+import Add_rest from '../screens/Add_rest';
 import HomeScreen from '../screens/Home';
 import SearchScreen from '../screens/Search';
 import TagScreen from '../screens/Tag';
@@ -41,6 +42,8 @@ import ReservationConfirm from '../screens/ReservationConfirm';
 import ReserveTable from '../screens/ReserveTable';
 import ReservationDateTime from '../screens/ReservationDateTime';
 import EditContectInfo from '../screens/EditContectInfo';
+import DineIn from '../screens/DineIn';
+import MyReservation from '../screens/MyReservation';
 
 var home_icon = require('../assets/image/home_icon.png');
 var search_icon = require('../assets/image/search_icon.png');
@@ -308,6 +311,21 @@ export default function TabNavigation() {
         <Stack.Screen
           name="EditContectInfo"
           component={EditContectInfo}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Add_rest"
+          component={Add_rest}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Dinein"
+          component={DineIn}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="MyReservation"
+          component={MyReservation}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

@@ -39,9 +39,10 @@ import {
 
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {AppDimensions} from '../constants/AppDimensions';
-import DineIn from '../screens/DineIn';
+import DineIn from '../screens/Add_rest';
 import {BottomSheet} from 'react-native-btr';
 import axios from 'axios';
+import {getDistance} from 'geolib';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -56,6 +57,12 @@ class TopTabNavigator extends Component {
       address_data: [],
       selected_address_iddd: [],
       idddd: null,
+      distance: null,
+
+      region: {
+        latitude: 0,
+        longitude: 0,
+      },
       selected_address: {
         id: '',
         landmark: '',
@@ -95,7 +102,12 @@ class TopTabNavigator extends Component {
               lat: Response.data.lat,
               long: Response.data.long,
             },
+            region: {
+              latitude: Response.data.lat,
+              longitude: Response.data.long,
+            },
           });
+          this._getDistanceAsync();
         } else {
           this.setState({
             isLoading: false,
@@ -118,6 +130,42 @@ class TopTabNavigator extends Component {
               //   ? this.state.selected_address_iddd.map(i => i.id)
               item.id,
             );
+            if (this.state.distance > 10) {
+              Alert.alert(
+                'Alert',
+                'Your current location is out of our delivery range. Would you take to do a takeaway order instead',
+
+                [
+                  {
+                    text: 'Yes',
+                    onPress: () => {
+                      this.props.is_order_type('2');
+                    },
+                  },
+                  {
+                    text: 'No',
+                    onPress: () =>
+                      this.setState({
+                        selected_address: {
+                          id: '',
+                          landmark: '',
+                          address1: '',
+                          address2: '',
+                          type: '',
+                          lat: 0,
+                          long: 0,
+                        },
+                      }),
+                    style: 'cancel',
+                  },
+                ],
+                {
+                  cancelable: false,
+                },
+              );
+            } else {
+              null;
+            }
             console.log('selected id', item.id);
             this.toggleBottomaddressView();
           }}>
@@ -183,7 +231,25 @@ class TopTabNavigator extends Component {
       </View>
     );
   };
+
+  _getDistanceAsync = async () => {
+    try {
+      var dis = getDistance(this.state.region, {
+        latitudeDelta: 0.0122,
+        longitudeDelta: 0.0122,
+        latitude: 22.295,
+        longitude: 70.7908,
+      });
+      console.log('distanceeeeeeeeeeeeeeee', dis);
+      this.setState({distance: dis / 1000});
+      console.log('distance   ', dis / 1000);
+    } catch (error) {
+      console.log('error in get distance', error);
+    }
+  };
+
   componentDidMount() {
+    this.setState({address_visible: true});
     this._getAddresses();
     // this.get_produst_ids();
     // this.TotalItemPrice();
@@ -312,7 +378,6 @@ class TopTabNavigator extends Component {
                   }}
                 />
               </Pressable>
-          
             </View>
             <View
               style={{
@@ -456,7 +521,6 @@ class TopTabNavigator extends Component {
                       fontSize: 8,
                       // fontWeight: 'bold',
                       color: focused ? '#CA0227' : 'gray',
-                      
                     }}>
                     9:00AM TO 10:00PM
                   </Text>
@@ -532,7 +596,6 @@ class TopTabNavigator extends Component {
                       fontSize: 8,
                       // fontWeight: 'bold',
                       color: focused ? '#CA0227' : 'gray',
-                      
                     }}>
                     9:00AM TO 10:00PM
                   </Text>
@@ -607,7 +670,6 @@ class TopTabNavigator extends Component {
                       fontSize: 8,
                       // fontWeight: 'bold',
                       color: focused ? '#CA0227' : 'gray',
-                      
                     }}>
                     9:00AM TO 10:00PM
                   </Text>

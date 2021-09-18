@@ -23,6 +23,8 @@ import {add, Value} from 'react-native-reanimated';
 import {PermissionsAndroid} from 'react-native';
 import {connect} from 'react-redux';
 import {add_address} from '../reducers/UserReducer/user_actions';
+import * as geolib from 'geolib';
+import {getDistance} from 'geolib';
 
 var img = require('../assets/image/img_tag_screen.png');
 const latitudeDelta = 0.025;
@@ -39,9 +41,15 @@ class Address extends Component {
       txt_house_flat: '',
       txt_leandmark: '',
       address_type: 0,
+      distance: null,
+
       initialRegion: {
         latitudeDelta: 0.0122,
         longitudeDelta: 0.0122,
+        longitude: 70.7908,
+        latitude: 22.295,
+      },
+      Region: {
         longitude: 70.7908,
         latitude: 22.295,
       },
@@ -103,6 +111,7 @@ class Address extends Component {
     // this.handleUserLocation();
     this.handleUserLocation();
     setTimeout(() => this.setState({marginBottom: 0}), 100);
+    // setTimeout(() => this._getDistanceAsync(), 4000);
   }
 
   handleUserLocation = () => {
@@ -117,6 +126,10 @@ class Address extends Component {
         this.setState({
           initialRegion: {
             ...this.state.initialRegion,
+            latitude: pos.coords.latitude,
+            longitude: pos.coords.longitude,
+          },
+          Region: {
             latitude: pos.coords.latitude,
             longitude: pos.coords.longitude,
           },
@@ -204,7 +217,7 @@ class Address extends Component {
             annotations
             showsUserLocation={true}
             showsMyLocationButton={true}
-            onRegionChangeComplete={this.onChangeValue}
+            // onRegionChangeComplete={this.onChangeValue}
             ref={ref => (this.map = ref)}>
             {/* <Marker
               coordinate={{latitude: 22.295, longitude: 70.7908}}
@@ -212,7 +225,7 @@ class Address extends Component {
             /> */}
           </MapView>
 
-          <View
+          {/* <View
             style={{
               top: '50%',
               left: '50%',
@@ -224,6 +237,7 @@ class Address extends Component {
               source={require('../assets/image/map_marker.png')}
               style={{height: 48, width: 48}}></Image>
           </View>
+        */}
         </View>
         <View
           style={{

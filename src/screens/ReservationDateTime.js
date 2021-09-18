@@ -159,77 +159,20 @@ export class ReservationDateTime extends Component {
 
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{flex: 1, marginBottom: 120}}>
-            <View
+            <Image
               style={{
-                flexDirection: 'row',
-                marginTop: 45,
-                borderRadius: 12,
-                borderColor: 'black',
-                borderWidth: 1,
-                height: 95,
-                marginHorizontal: 25,
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}>
-              <Text
-                style={{
-                  fontSize: 30,
-                  fontWeight: 'bold',
-                  color: 'black',
-                  marginLeft: 25,
-                }}>
-                Guests
+                height: 180,
+                width: 180,
+                resizeMode: 'contain',
+                alignSelf: 'center',
+              }}
+              source={{uri: this.props.route.params.img}}></Image>
+
+            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+              <Text style={{color: 'black', fontSize: 19}}>
+                {moment(new Date()).format('lll')}
               </Text>
-
-              <View
-                style={{
-                  flexDirection: 'row',
-
-                  borderRadius: 10,
-                  borderColor: 'black',
-                  borderWidth: 1,
-                  width: 95,
-                  height: 40,
-                  marginHorizontal: 25,
-                  justifyContent: 'space-evenly',
-                  alignItems: 'center',
-                }}>
-                <TouchableOpacity
-                  disabled={this.state.guest_count == 0 ? true : false}
-                  onPress={() =>
-                    this.setState({guest_count: this.state.guest_count - 1})
-                  }
-                  style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <Text style={{fontSize: 20}}>-</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <Text style={{fontSize: 20, fontWeight: 'bold'}}>
-                    {this.state.guest_count}
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() =>
-                    this.setState({guest_count: this.state.guest_count + 1})
-                  }
-                  style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <Text style={{fontSize: 17}}>+</Text>
-                </TouchableOpacity>
-              </View>
             </View>
-
             <View
               style={{
                 // flexDirection: 'row',
@@ -281,6 +224,7 @@ export class ReservationDateTime extends Component {
               <DatePicker
                 style={{marginVertical: 20, flex: 1}}
                 date={this.state.date}
+                minuteInterval={15}
                 minimumDate={this.state.date}
                 onDateChange={date => this.set_time(date)}
               />
