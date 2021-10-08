@@ -130,10 +130,10 @@ class TopTabNavigator extends Component {
               //   ? this.state.selected_address_iddd.map(i => i.id)
               item.id,
             );
-            if (this.state.distance > 10) {
+            if (this.state.distance < 10) {
               Alert.alert(
                 'Alert',
-                'Your current location is out of our delivery range. Would you take to do a takeaway order instead',
+                'Your current location is out of our delivery range. Do you want to do a takeaway order instead',
 
                 [
                   {
@@ -180,7 +180,7 @@ class TopTabNavigator extends Component {
                   alignSelf: 'center',
                 }}
               />
-              <Text style={{fontSize: 15, alignSelf: 'center', marginLeft: 8}}>
+              <Text style={{fontSize: 18, alignSelf: 'center', marginLeft: 8}}>
                 home
               </Text>
             </View>
@@ -196,7 +196,7 @@ class TopTabNavigator extends Component {
                   alignSelf: 'center',
                 }}
               />
-              <Text style={{fontSize: 15, alignSelf: 'center', marginLeft: 8}}>
+              <Text style={{fontSize: 18, alignSelf: 'center', marginLeft: 8}}>
                 work
               </Text>
             </View>
@@ -213,13 +213,13 @@ class TopTabNavigator extends Component {
                   alignSelf: 'center',
                 }}
               />
-              <Text style={{fontSize: 15, alignSelf: 'center', marginLeft: 8}}>
+              <Text style={{fontSize: 18, alignSelf: 'center', marginLeft: 8}}>
                 other
               </Text>
             </View>
           ) : null}
 
-          <Text style={{fontSize: 13}}>{item.address1}</Text>
+          <Text style={{fontSize: 16}}>{item.address1}</Text>
           <View
             style={{
               borderBottomColor: '#000000',
@@ -249,7 +249,8 @@ class TopTabNavigator extends Component {
   };
 
   componentDidMount() {
-    this.setState({address_visible: true});
+    // this.setState({address_visible: true});
+    this.toggleBottomaddressView();
     this._getAddresses();
     // this.get_produst_ids();
     // this.TotalItemPrice();
@@ -344,6 +345,7 @@ class TopTabNavigator extends Component {
             visible={this.state.address_visible}
             //setting the visibility state of the bottom shee
             onBackButtonPress={this.toggleBottomaddressView}
+            onBackdropPress={this.toggleBottomaddressView}
             //Toggling the visibility state on the click of the back botton
             // onBackdropPress={this.toggleBottomNavigationView}
             //Toggling the visibility state on the clicking out side of the sheet
@@ -394,7 +396,7 @@ class TopTabNavigator extends Component {
                   marginTop: 20,
                   marginLeft: 15,
                 }}>
-                Select An Address
+                Select an Address
               </Text>
               <View
                 style={{
@@ -416,7 +418,7 @@ class TopTabNavigator extends Component {
                   <Text
                     style={{
                       marginTop: 15,
-                      color: '#BE984A',
+                      color: '#F10114',
                       fontSize: 15,
                       marginLeft: 15,
                     }}>
@@ -516,14 +518,14 @@ class TopTabNavigator extends Component {
                     }}>
                     DELIVERY
                   </Text>
-                  <Text
+                  {/* <Text
                     style={{
                       fontSize: 8,
                       // fontWeight: 'bold',
                       color: focused ? '#CA0227' : 'gray',
                     }}>
                     9:00AM TO 10:00PM
-                  </Text>
+                  </Text> */}
                 </View>
               ),
               // tabBarIcon: ({focused, color, size}) => (
@@ -591,14 +593,14 @@ class TopTabNavigator extends Component {
                     }}>
                     TAKEAWAY
                   </Text>
-                  <Text
+                  {/* <Text
                     style={{
                       fontSize: 8,
                       // fontWeight: 'bold',
                       color: focused ? '#CA0227' : 'gray',
                     }}>
                     9:00AM TO 10:00PM
-                  </Text>
+                  </Text> */}
                 </View>
               ),
               // tabBarIcon: ({focused, color, size}) => (
@@ -665,14 +667,14 @@ class TopTabNavigator extends Component {
                     }}>
                     DINE-IN
                   </Text>
-                  <Text
+                  {/* <Text
                     style={{
                       fontSize: 8,
                       // fontWeight: 'bold',
                       color: focused ? '#CA0227' : 'gray',
                     }}>
                     9:00AM TO 10:00PM
-                  </Text>
+                  </Text> */}
                 </View>
               ),
               // tabBarIcon: ({focused, color, size}) => (

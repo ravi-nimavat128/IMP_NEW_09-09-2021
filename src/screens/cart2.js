@@ -789,10 +789,10 @@ class Cart2 extends Component {
               totalHeight={28}
               iconSize={10}
               minValue={0}
-              borderColor={'#00000000'}
+              borderColor={'#F10114'}
               inputStyle={{
-                backgroundColor: '#C8B9B2',
-                color: 'black',
+                backgroundColor: '#F10114',
+                color: 'white',
                 alignSelf: 'center',
                 height: 26,
                 justifyContent: 'center',
@@ -801,8 +801,10 @@ class Cart2 extends Component {
               type={'plus-minus'}
               step={1}
               valueType="real"
-              textColor="#B0228C"
-              iconStyle={{color: 'black'}}
+              textColor="white"
+              iconStyle={{color: 'white', backgroundColor: '#F10114'}}
+              rightButtonBackgroundColor="#F10114"
+              leftButtonBackgroundColor="#F10114"
             />
 
             <Text
@@ -907,7 +909,7 @@ class Cart2 extends Component {
                     flex: 1,
                     borderRadius: 8,
                     height: 40,
-                    backgroundColor: '#A9B5B1',
+                    backgroundColor: '#E9EAED',
                     flexDirection: 'row',
                     // width: 100,
                   }}>
@@ -916,7 +918,7 @@ class Cart2 extends Component {
                     style={{
                       flex: 1,
                       backgroundColor:
-                        this.props.is_order == '1' ? '#ED505C' : '#00000000',
+                        this.props.is_order == '1' ? '#F10114' : '#00000000',
                       borderRadius: 8,
                       justifyContent: 'center',
                       alignItems: 'center',
@@ -934,7 +936,7 @@ class Cart2 extends Component {
                     style={{
                       flex: 1,
                       backgroundColor:
-                        this.props.is_order == '2' ? '#ED505C' : '#00000000',
+                        this.props.is_order == '2' ? '#F10114' : '#00000000',
                       borderRadius: 8,
                       justifyContent: 'center',
                       alignItems: 'center',
@@ -950,6 +952,7 @@ class Cart2 extends Component {
                 </View>
               </View>
               <ScrollView style={{marginBottom: 90}}>
+                {console.log('this.props.myItems', this.props.myItems)}
                 <View>
                   <FlatList
                     style={{marginTop: 20}}
@@ -1330,7 +1333,7 @@ class Cart2 extends Component {
 
                   <Text
                     style={{
-                      color: '#ED505C',
+                      color: '#F10114',
                       fontSize: 13,
                       marginTop: 15,
                       marginBottom: 250,
@@ -1355,6 +1358,7 @@ class Cart2 extends Component {
                       // this.TotalItemPrice();
                       // this.PlaceORder();
                       // this.NewPlaceOrder();
+
                       // this.props.navigation.navigate('Profile');
                       this.toggleBottomNavigationView();
                     }}
@@ -1655,7 +1659,7 @@ class Cart2 extends Component {
                                     marginTop: 20,
                                     marginLeft: 15,
                                   }}>
-                                  Select An Address
+                                  Select an address
                                 </Text>
                                 <View
                                   style={{
@@ -1723,7 +1727,7 @@ class Cart2 extends Component {
                         ) : (
                           <View
                             style={{
-                              backgroundColor: '#A9B5B1',
+                              backgroundColor: '#D9781C',
                               paddingVertical: 4,
                               marginHorizontal: 10,
                               borderRadius: 4,
@@ -1732,34 +1736,30 @@ class Cart2 extends Component {
                             }}>
                             <Image
                               source={require('../assets/image/store_icon.png')}
-                              style={{height: 26, width: 26, marginLeft: 10}}
+                              style={{
+                                height: 26,
+                                width: 26,
+                                marginLeft: 10,
+                                tintColor: 'white',
+                              }}
                             />
-                            <View style={{marginVertical: 8}}>
+                            <View style={{marginVertical: 2}}>
                               <Text
                                 style={{
+                                  color: 'white',
+                                  fontSize: 19,
                                   marginLeft: 20,
-                                  color: 'black',
+                                }}>
+                                the Imperial Palace
+                              </Text>
+                              <Text
+                                style={{
+                                  color: 'white',
                                   fontSize: 16,
-                                  fontWeight: 'bold',
-                                }}>
-                                Takeaway
-                              </Text>
-                              <Text
-                                style={{
-                                  color: 'black',
-                                  fontSize: 13,
-                                  marginLeft: 20,
-                                }}>
-                                The Imperial Place
-                              </Text>
-                              <Text
-                                style={{
-                                  color: 'black',
-                                  fontSize: 11,
                                   marginLeft: 20,
                                   marginBottom: 4,
                                 }}>
-                                Dr. Yagnik Road ,Reace Cource, Rajkot, Gujrat
+                                Dr. Yagnik Road, Rajkot.
                               </Text>
                             </View>
                           </View>
@@ -1772,7 +1772,7 @@ class Cart2 extends Component {
                             //  onPress={() => this.toggleBottomaddressView()}
                             style={{
                               flexDirection: 'row',
-                              backgroundColor: '#A9B5B1',
+                              backgroundColor: '#D9781C',
                               marginTop: 20,
                               // height: 40,
                               marginHorizontal: 10,
@@ -1785,6 +1785,7 @@ class Cart2 extends Component {
                               visible={this.state.address_visible}
                               //setting the visibility state of the bottom shee
                               onBackButtonPress={this.toggleBottomaddressView}
+                              onBackdropPress={this.toggleBottomaddressView}
                               //Toggling the visibility state on the click of the back botton
                               // onBackdropPress={this.toggleBottomNavigationView}
                               //Toggling the visibility state on the clicking out side of the sheet
@@ -1835,7 +1836,7 @@ class Cart2 extends Component {
                                     marginTop: 20,
                                     marginLeft: 15,
                                   }}>
-                                  Select An Address
+                                  Select an address
                                 </Text>
                                 <View
                                   style={{
@@ -1878,22 +1879,22 @@ class Cart2 extends Component {
                                 height: 30,
                                 width: 30,
                                 marginLeft: 10,
-                                tintColor: 'black',
-                                marginVertical: 26,
+                                tintColor: 'white',
+                                marginVertical: 14,
                               }}></Image>
                             <View style={{alignSelf: 'center', flex: 1}}>
                               <Text
                                 style={{
-                                  color: 'black',
-                                  fontWeight: 'bold',
-                                  fontSize: 16,
+                                  color: 'white',
+                                  // fontWeight: 'bold',
+                                  fontSize: 17,
                                   marginHorizontal: 20,
                                 }}>
                                 Delivery
                               </Text>
                               <Text
                                 style={{
-                                  color: 'black',
+                                  color: 'white',
                                   // fontWeight: 'bold',
                                   fontSize: 14,
                                   marginHorizontal: 20,
@@ -1902,7 +1903,7 @@ class Cart2 extends Component {
                               </Text>
                               <Text
                                 style={{
-                                  color: 'black',
+                                  color: 'white',
                                   // fontWeight: 'bold',
                                   fontSize: 11,
                                   marginHorizontal: 20,
@@ -1934,7 +1935,7 @@ class Cart2 extends Component {
                         ) : (
                           <View
                             style={{
-                              backgroundColor: '#A9B5B1',
+                              backgroundColor: '#D9781C',
                               paddingVertical: 4,
                               marginHorizontal: 10,
                               borderRadius: 4,
@@ -1943,34 +1944,30 @@ class Cart2 extends Component {
                             }}>
                             <Image
                               source={require('../assets/image/store_icon.png')}
-                              style={{height: 26, width: 26, marginLeft: 10}}
+                              style={{
+                                height: 26,
+                                width: 26,
+                                marginLeft: 10,
+                                tintColor: 'white',
+                              }}
                             />
-                            <View style={{marginVertical: 8}}>
+                            <View style={{marginVertical: 0}}>
                               <Text
                                 style={{
+                                  color: 'white',
+                                  fontSize: 19,
                                   marginLeft: 20,
-                                  color: 'black',
+                                }}>
+                                the Imperial Palace
+                              </Text>
+                              <Text
+                                style={{
+                                  color: 'white',
                                   fontSize: 16,
-                                  fontWeight: 'bold',
-                                }}>
-                                Takeaway
-                              </Text>
-                              <Text
-                                style={{
-                                  color: 'black',
-                                  fontSize: 13,
                                   marginLeft: 20,
+                                  marginBottom: 1,
                                 }}>
-                                The Imperial Place
-                              </Text>
-                              <Text
-                                style={{
-                                  color: 'black',
-                                  fontSize: 11,
-                                  marginLeft: 20,
-                                  marginBottom: 4,
-                                }}>
-                                Dr. Yagnik Road ,Reace Cource, Rajkot, Gujrat
+                                Dr. Yagnik Road, Rajkot.
                               </Text>
                             </View>
                           </View>
@@ -2029,11 +2026,11 @@ class Cart2 extends Component {
                         // this.NewPlaceOrder();
                       }}
                       style={{
-                        backgroundColor: '#ED505C',
+                        backgroundColor: '#F10114',
                         marginTop: 8,
-                        height: 60,
-                        marginBottom: 70,
-                        marginHorizontal: 25,
+                        height: 55,
+                        marginBottom: 6,
+                        marginHorizontal: 10,
                         borderRadius: 5,
                         justifyContent: 'center',
                       }}>
@@ -2116,7 +2113,7 @@ class Cart2 extends Component {
                           fontWeight: 'bold',
                           fontSize: 16,
                         }}>
-                        Imperial Palace
+                        the Imperial Palace
                       </Text>
                     }
                     , Dr.Yagnik Road
@@ -2141,7 +2138,7 @@ class Cart2 extends Component {
                       width: '90%',
                       marginHorizontal: 15,
                       marginTop: 35,
-                      backgroundColor: '#ED505C',
+                      backgroundColor: '#F10114',
                       height: 50,
                       borderRadius: 5,
                       justifyContent: 'center',
@@ -2165,7 +2162,7 @@ class Cart2 extends Component {
                       width: '90%',
                       marginHorizontal: 15,
                       marginTop: 20,
-                      borderColor: '#ED505C',
+                      borderColor: '#F10114',
                       height: 50,
                       borderWidth: 1,
                       borderRadius: 5,
@@ -2192,6 +2189,7 @@ class Cart2 extends Component {
               alignContent: 'center',
               flex: 1,
               alignItems: 'center',
+              backgroundColor: '#fff',
             }}>
             <Image source={img} style={style.img} />
             <Text style={style.text1}>GOOD FOOD. GOOD MOOD</Text>
@@ -2292,7 +2290,7 @@ const style = StyleSheet.create({
   },
   number_input: {
     borderRadius: 5,
-    borderColor: 'black',
+    borderColor: '#F10114',
     alignSelf: 'center',
     borderWidth: 1,
     marginRight: 24,

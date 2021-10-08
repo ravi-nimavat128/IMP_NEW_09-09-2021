@@ -44,6 +44,9 @@ import ReservationDateTime from '../screens/ReservationDateTime';
 import EditContectInfo from '../screens/EditContectInfo';
 import DineIn from '../screens/DineIn';
 import MyReservation from '../screens/MyReservation';
+import CancelOrder from '../screens/CancelOrder';
+import OrderRejected from '../screens/OrderRejected';
+import Test from '../screens/Test';
 
 var home_icon = require('../assets/image/home_icon.png');
 var search_icon = require('../assets/image/search_icon.png');
@@ -326,6 +329,24 @@ export default function TabNavigation() {
         <Stack.Screen
           name="MyReservation"
           component={MyReservation}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="CancelOrder"
+          component={CancelOrder}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="OrderRejected"
+          component={OrderRejected}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="Test"
+          component={Test}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

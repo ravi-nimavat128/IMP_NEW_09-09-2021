@@ -138,7 +138,8 @@ export class DineIn extends Component {
                 textAlign: 'center',
                 marginBottom: 25,
               }}>
-              11:30AM TO 03:30PM 7:00PM TO 11:30PM
+              11:30 am to 03:30 pm {'\n'}
+              7:00 pm to 11:30 pm
             </Text>
           ) : index == 1 ? (
             <Text
@@ -156,7 +157,7 @@ export class DineIn extends Component {
                 textAlign: 'center',
                 marginBottom: 25,
               }}>
-              11:30AM TO 03:30PM{'\n'}7:00PM TO 11:30PM
+              11:30 am to 03:30 pm{'\n'}7:00 pm to 11:30 pm
             </Text>
           )}
         </TouchableOpacity>
@@ -230,9 +231,10 @@ const style = StyleSheet.create({
     alignSelf: 'center',
   },
   txt_heading: {
-    fontSize: 16,
+    flex: 0.7,
+    fontSize: 20,
     color: 'black',
-    alignSelf: 'center',
-    marginLeft: 20,
+    fontWeight: 'bold',
+    marginLeft: 18,
   },
 });

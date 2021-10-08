@@ -113,9 +113,10 @@ const style = StyleSheet.create({
     alignSelf: 'center',
   },
   txt_heading: {
-    fontSize: 18,
+    fontSize: 20,
     color: 'black',
-    alignSelf: 'center',
-    marginLeft: 20,
+    fontWeight: 'bold',
+    marginLeft: 18,
+    marginTop: 18,
   },
 });

@@ -87,9 +87,9 @@ class EditContectInfo extends Component {
           size={'large'}
           animation={'fade'}
           cancelable={false}
-          color="#ED505C"
+          color="#F10114"
           //Text style of the Spinner Text
-          textStyle={{color: '#ED505C', fontSize: 20, marginLeft: 10}}
+          textStyle={{color: '#F10114', fontSize: 20, marginLeft: 10}}
         />
         <View style={style.header}>
           <TouchableOpacity
@@ -121,8 +121,8 @@ class EditContectInfo extends Component {
             // value={this.state.full_name}
             onChangeText={text => this.setState({full_name: text})}
             underlineColorAndroid="transparent"
-            selectionColor="#ED505C"
-            theme={{colors: {primary: '#ED505C', background: '#00000000'}}}
+            selectionColor="#F10114"
+            theme={{colors: {primary: '#F10114', background: '#00000000'}}}
             keyboardType="default"
           />
           <TextInput
@@ -132,8 +132,8 @@ class EditContectInfo extends Component {
             editable={false}
             onChangeText={text => this.props.addPhoneNumber(text)}
             underlineColorAndroid="transparent"
-            selectionColor="#ED505C"
-            theme={{colors: {primary: '#ED505C', background: '#00000000'}}}
+            selectionColor="#F10114"
+            theme={{colors: {primary: '#F10114', background: '#00000000'}}}
             keyboardType="number-pad"
             maxLength={10}
           />
@@ -145,8 +145,8 @@ class EditContectInfo extends Component {
             // value={this.state.email}
             onChangeText={text => this.setState({email: text})}
             underlineColorAndroid="transparent"
-            selectionColor="#ED505C"
-            theme={{colors: {primary: '#ED505C', background: '#00000000'}}}
+            selectionColor="#F10114"
+            theme={{colors: {primary: '#F10114', background: '#00000000'}}}
             keyboardType="email-address"
           />
 
@@ -155,7 +155,7 @@ class EditContectInfo extends Component {
             disabled={this.props.name.length > 1 ? false : true}
             style={{
               backgroundColor:
-                this.props.name.length > 1 ? '#ED505C' : '#ED505C',
+                this.props.name.length > 1 ? '#F10114' : '#F10114',
               borderRadius: 5,
               justifyContent: 'center',
               marginTop: 35,

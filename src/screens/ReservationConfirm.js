@@ -9,7 +9,9 @@ import {
   TouchableOpacity,
   Touchable,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
+import {Button} from 'react-native-paper';
 import {connect} from 'react-redux';
 import {is_order_type} from '../reducers/cartItems/actions';
 
@@ -20,6 +22,57 @@ export class ReservationConfirm extends Component {
       t_status: 0,
       isLoading: false,
     };
+  }
+
+  _OrderCancel() {
+    Alert.alert('', 'Are you sure you want to cancel this booking ? ', [
+      {
+        text: 'Yes',
+        onPress: () => {
+          console.log('response', 'clicked _OrderCancel');
+          var formData = new FormData();
+          formData.append('user_id', this.props.user_id);
+          formData.append('booking_id', this.props.route.params.booking_id);
+
+          axios
+            .post(
+              'http://binarygeckos.com/imp/apis/restaurant/generals/booking_cancel_table',
+              formData,
+            )
+            .then(Response => {
+              console.log('response', Response.data);
+              if (Response.data.status == 1) {
+                {
+                  Alert.alert('', 'Booking cancelled successfully ', [
+                    {
+                      text: 'Ok',
+                      onPress: () => {
+                        this.props.navigation.replace('MainNavigator');
+                      },
+                    },
+                    {
+                      text: 'Close',
+                      onPress: () => {
+                        this.props.navigation.replace('MainNavigator');
+                      },
+                      //                style: 'cancel',
+                    },
+                  ]);
+                }
+
+                /// this.props.navigation.replace('MainNavigator');
+              } else {
+                alert(Response.data.message);
+              }
+            });
+        },
+      },
+      {
+        text: 'No',
+        onPress: () => {},
+        style: 'cancel',
+      },
+    ]);
   }
 
   componentDidMount() {
@@ -37,7 +90,7 @@ export class ReservationConfirm extends Component {
     var myTimer = setInterval(
       () =>
         this.state.t_status == 1 ? this.get_r_data() : clearInterval(myTimer),
-      12000,
+      1000,
     );
   };
 
@@ -70,13 +123,15 @@ export class ReservationConfirm extends Component {
             }
             if (Response.data.table_status == 3) {
               this.props.is_order_type('3');
-              this.props.navigation.replace('MainNavigator');
+              this.props.navigation.replace('OrderRejected', {
+                booking_id: this.props.route.params.booking_id,
+              });
             } else {
               null;
             }
           }
         } else {
-          alert(Response.data.message);
+          //  alert(Response.data.message);
         }
       });
     console.log(formData);
@@ -113,6 +168,34 @@ export class ReservationConfirm extends Component {
             <Image
               source={require('../assets/image/gif.gif')}
               style={{height: 270, width: 270, marginTop: 80}}></Image>
+
+            <TouchableOpacity
+              onPress={() => this._OrderCancel()}
+              style={{
+                backgroundColor: '#F10114',
+                marginTop: 8,
+                height: 55,
+                width: '90%',
+                marginTop: 150,
+                marginLeft: 20,
+                marginRight: 20,
+                marginHorizontal: 10,
+                borderRadius: 5,
+                justifyContent: 'center',
+                color: '#fff',
+              }}>
+              <View>
+                <Text
+                  style={{
+                    color: '#fff',
+                    textAlign: 'center',
+                    fontSize: 18,
+                    letterSpacing: 2,
+                  }}>
+                  Cancel Booking
+                </Text>
+              </View>
+            </TouchableOpacity>
 
             {/* <ActivityIndicator
               animating={this.state.isLoading}

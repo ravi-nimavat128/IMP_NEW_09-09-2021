@@ -41,7 +41,7 @@ import ImageLoading from '../Components/ImageLoading';
 import {AppDimensions} from '../constants/AppDimensions';
 var img_url = 'https://www.binarygeckos.com/imphotel/upload/';
 
-var banner_img = require('../assets/image/banner1.png');
+var banner_img = require('../assets/image/src_assets_image_banner1.png');
 
 let deviceWidth = Dimensions.get('window').width;
 

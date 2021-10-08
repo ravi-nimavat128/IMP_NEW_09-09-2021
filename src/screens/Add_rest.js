@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 // import {TouchableOpacity} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-var banner_img = require('../assets/image/banner1.png');
+var banner_img = require('../assets/image/src_assets_image_banner1.png');
 import {AppDimensions} from '../constants/AppDimensions';
 
 import CarouselCardItem, {

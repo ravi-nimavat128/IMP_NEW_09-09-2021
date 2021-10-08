@@ -303,7 +303,7 @@ export class ReserveTable extends Component {
                     fontSize: 16,
                     marginLeft: 10,
                   }}>
-                  Call for info
+                  Call
                 </Text>
               </TouchableOpacity>
             </View>
@@ -332,7 +332,7 @@ export class ReserveTable extends Component {
             height: 50,
             width: '90%',
             borderRadius: 8,
-            backgroundColor: '#FF9400',
+            backgroundColor: '#F10114',
             alignSelf: 'center',
             marginBottom: 40,
             shadowColor: '#000000',

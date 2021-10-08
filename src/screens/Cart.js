@@ -454,6 +454,10 @@ class Cart extends Component {
     let formData = new FormData();
     formData.append('user_id', this.props.user_id);
     // formData.append('address_id', 1);
+    console.log(
+      'i.id-========================================================',
+      i.id,
+    );
     formData.append('product_id', this.props.myItems.map(i => i.id).join(','));
     formData.append('amount', this.props.myItems.map(i => i.price).join(','));
     formData.append('qty', this.props.myItems.map(i => i.qty).join(','));
@@ -650,6 +654,7 @@ class Cart extends Component {
                   marginRight: 4,
                 }}
               />
+
               <Text style={{color: 'black', fontSize: 16}}>{item.name}</Text>
             </View>
 
@@ -762,7 +767,7 @@ class Cart extends Component {
                   opacity: 0.6,
                   marginTop: 3,
                 }}>
-                Regular/ Jain : {item.is_option}
+                is_option Regular/ Jain : {item.is_option}
               </Text>
             )}
             <Text
@@ -784,17 +789,19 @@ class Cart extends Component {
                 this.get_produst_ids();
               }}
               // onLimitReached={e => this.props.removeToCart(item.id)}
-              totalWidth={82}
+              totalWidth={90}
               initValue={item.qty}
-              totalHeight={28}
+              totalHeight={30}
               iconSize={10}
               minValue={0}
               borderColor={'#00000000'}
+              rightButtonBackgroundColor="#F10114"
+              leftButtonBackgroundColor="#F10114"
               inputStyle={{
-                backgroundColor: '#C8B9B2',
-                color: 'black',
+                backgroundColor: '#F10114',
+                color: 'white',
                 alignSelf: 'center',
-                height: 26,
+                height: 28,
                 justifyContent: 'center',
               }}
               rounded
@@ -802,7 +809,7 @@ class Cart extends Component {
               step={1}
               valueType="real"
               textColor="#B0228C"
-              iconStyle={{color: 'black'}}
+              iconStyle={{color: 'white'}}
             />
 
             <Text
@@ -895,7 +902,7 @@ class Cart extends Component {
                 <Text
                   style={{
                     flex: 0.7,
-                    fontSize: 15,
+                    fontSize: 20,
                     color: 'black',
                     fontWeight: 'bold',
                     marginLeft: 8,
@@ -907,7 +914,7 @@ class Cart extends Component {
                     flex: 1,
                     borderRadius: 8,
                     height: 40,
-                    backgroundColor: '#A9B5B1',
+                    backgroundColor: '#fff',
                     flexDirection: 'row',
                     // width: 100,
                   }}>
@@ -916,7 +923,7 @@ class Cart extends Component {
                     style={{
                       flex: 1,
                       backgroundColor:
-                        this.props.is_order == '1' ? '#ED505C' : '#00000000',
+                        this.props.is_order == '1' ? '#F10114' : '#D4D4D4',
                       borderRadius: 8,
                       justifyContent: 'center',
                       alignItems: 'center',
@@ -934,7 +941,7 @@ class Cart extends Component {
                     style={{
                       flex: 1,
                       backgroundColor:
-                        this.props.is_order == '2' ? '#ED505C' : '#00000000',
+                        this.props.is_order == '2' ? '#F10114' : '#D4D4D4',
                       borderRadius: 8,
                       justifyContent: 'center',
                       alignItems: 'center',
@@ -1330,7 +1337,7 @@ class Cart extends Component {
 
                   <Text
                     style={{
-                      color: '#ED505C',
+                      color: '#F10114',
                       fontSize: 13,
                       marginTop: 15,
                       marginBottom: 250,
@@ -1655,7 +1662,7 @@ class Cart extends Component {
                                     marginTop: 20,
                                     marginLeft: 15,
                                   }}>
-                                  Select An Address
+                                  Select an address
                                 </Text>
                                 <View
                                   style={{
@@ -1700,12 +1707,17 @@ class Cart extends Component {
                                 tintColor: 'white',
                               }}></Image>
 
-                            <View style={{flexDirection: 'row'}}>
+                            <View
+                              style={{
+                                flexDirection: 'row',
+                                marginHorizontal: 10,
+                              }}>
                               <Text
                                 style={{
                                   color: 'white',
                                   fontWeight: 'bold',
                                   fontSize: 16,
+
                                   marginLeft: 5,
                                 }}>
                                 SELECT DELIVERY LOCATION
@@ -1723,12 +1735,13 @@ class Cart extends Component {
                         ) : (
                           <View
                             style={{
-                              backgroundColor: '#A9B5B1',
+                              backgroundColor: '#FB9F25',
                               paddingVertical: 4,
                               marginHorizontal: 10,
                               borderRadius: 4,
                               flexDirection: 'row',
                               alignItems: 'center',
+                              height: 55,
                             }}>
                             <Image
                               source={require('../assets/image/store_icon.png')}
@@ -1772,8 +1785,9 @@ class Cart extends Component {
                             //  onPress={() => this.toggleBottomaddressView()}
                             style={{
                               flexDirection: 'row',
-                              backgroundColor: '#A9B5B1',
+                              backgroundColor: '#FB9F25',
                               marginTop: 20,
+                              height: 60,
                               // height: 40,
                               marginHorizontal: 10,
                               // marginBottom: 10,
@@ -1835,7 +1849,7 @@ class Cart extends Component {
                                     marginTop: 20,
                                     marginLeft: 15,
                                   }}>
-                                  Select An Address
+                                  Select an address
                                 </Text>
                                 <View
                                   style={{
@@ -1878,13 +1892,14 @@ class Cart extends Component {
                                 height: 30,
                                 width: 30,
                                 marginLeft: 10,
-                                tintColor: 'black',
+
+                                tintColor: '#FFFFFF',
                                 marginVertical: 26,
                               }}></Image>
                             <View style={{alignSelf: 'center', flex: 1}}>
                               <Text
                                 style={{
-                                  color: 'black',
+                                  color: '#FFFFFF',
                                   fontWeight: 'bold',
                                   fontSize: 16,
                                   marginHorizontal: 20,
@@ -1893,7 +1908,7 @@ class Cart extends Component {
                               </Text>
                               <Text
                                 style={{
-                                  color: 'black',
+                                  color: '#FFFFFF',
                                   // fontWeight: 'bold',
                                   fontSize: 14,
                                   marginHorizontal: 20,
@@ -1902,7 +1917,7 @@ class Cart extends Component {
                               </Text>
                               <Text
                                 style={{
-                                  color: 'black',
+                                  color: '#FFFFFF',
                                   // fontWeight: 'bold',
                                   fontSize: 11,
                                   marginHorizontal: 20,
@@ -1934,7 +1949,8 @@ class Cart extends Component {
                         ) : (
                           <View
                             style={{
-                              backgroundColor: '#A9B5B1',
+                              backgroundColor: '#FB9F25',
+                              height: 55,
                               paddingVertical: 4,
                               marginHorizontal: 10,
                               borderRadius: 4,
@@ -1943,13 +1959,18 @@ class Cart extends Component {
                             }}>
                             <Image
                               source={require('../assets/image/store_icon.png')}
-                              style={{height: 26, width: 26, marginLeft: 10}}
+                              style={{
+                                height: 26,
+                                width: 26,
+                                marginLeft: 10,
+                                tintColor: 'white',
+                              }}
                             />
                             <View style={{marginVertical: 8}}>
                               <Text
                                 style={{
                                   marginLeft: 20,
-                                  color: 'black',
+                                  color: 'white',
                                   fontSize: 16,
                                   fontWeight: 'bold',
                                 }}>
@@ -1957,7 +1978,7 @@ class Cart extends Component {
                               </Text>
                               <Text
                                 style={{
-                                  color: 'black',
+                                  color: 'white',
                                   fontSize: 13,
                                   marginLeft: 20,
                                 }}>
@@ -1965,7 +1986,7 @@ class Cart extends Component {
                               </Text>
                               <Text
                                 style={{
-                                  color: 'black',
+                                  color: 'white',
                                   fontSize: 11,
                                   marginLeft: 20,
                                   marginBottom: 4,
@@ -1989,6 +2010,10 @@ class Cart extends Component {
                             takeaway_pickup_visible: true,
                           });
                         } else {
+                          console.log(
+                            'this.props.myItems',
+                            this.props.myItems.map(i => i.id),
+                          );
                           this.state.selected_address.id == ''
                             ? alert('please select a delivery location')
                             : // : this.PlaceORder();
@@ -2029,11 +2054,11 @@ class Cart extends Component {
                         // this.NewPlaceOrder();
                       }}
                       style={{
-                        backgroundColor: '#ED505C',
+                        backgroundColor: '#F10114',
                         marginTop: 8,
-                        height: 60,
+                        height: 55,
                         marginBottom: 70,
-                        marginHorizontal: 25,
+                        marginHorizontal: 10,
                         borderRadius: 5,
                         justifyContent: 'center',
                       }}>
@@ -2141,7 +2166,7 @@ class Cart extends Component {
                       width: '90%',
                       marginHorizontal: 15,
                       marginTop: 35,
-                      backgroundColor: '#ED505C',
+                      backgroundColor: '#F10114',
                       height: 50,
                       borderRadius: 5,
                       justifyContent: 'center',
@@ -2165,7 +2190,7 @@ class Cart extends Component {
                       width: '90%',
                       marginHorizontal: 15,
                       marginTop: 20,
-                      borderColor: '#ED505C',
+                      borderColor: '#F10114',
                       height: 50,
                       borderWidth: 1,
                       borderRadius: 5,
@@ -2292,9 +2317,10 @@ const style = StyleSheet.create({
   },
   number_input: {
     borderRadius: 5,
-    borderColor: 'black',
+    borderColor: '#F10114',
+
     alignSelf: 'center',
-    borderWidth: 1,
+    borderWidth: 2,
     marginRight: 24,
     width: 85,
     justifyContent: 'center',

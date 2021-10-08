@@ -51,7 +51,7 @@ import Cart2 from './cart2';
 var back_arrow = require('../assets/image/back_arrow.png');
 var vag_icon = require('../assets/image/vag.png');
 var spoon_icon = require('../assets/image/spoon.png');
-var selected_circle = require('../assets/image/green_checkbox.jpg');
+var selected_circle = require('../assets/image/green_checkbox.png');
 var non_selected_circle = require('../assets/image/white_check_box.png');
 
 const Itemm = ({
@@ -74,13 +74,13 @@ const Itemm = ({
       borderColor,
       borderWidth,
     ]}>
-    <Text style={[styles.title_menu]}>{item.name}</Text>
+    <Text style={[styles.title_menu]}>{this.Capitalize(item.name)}</Text>
     <Text style={[styles.subtitle]}>
       {item.total_products} OPTION AVAILABLE
     </Text>
   </TouchableOpacity>
 );
-
+// item for topping item plz check this desing below
 const Item = ({
   item,
   onPress,
@@ -124,22 +124,27 @@ const Item = ({
           {/* <Text style={[styles.title, textColor, {alignSelf: 'center'}]}>
           {item.topping_price == '0' ? null : item.topping_price}
         </Text> */}
-          <Text style={[styles.title, {alignSelf: 'center'}]}>
+          <Text style={[styles.title, {alignSelf: 'center', fontSize: 16}]}>
             {item.topping_name}
             <View style={{flex: 0.1}}></View>
           </Text>
         </View>
         <View
           style={{flexDirection: 'row', alignItems: 'center', marginRight: 15}}>
-          <Text style={[styles.title, {alignSelf: 'center'}]}>
-            ₹ {item.topping_price}
+          <Text style={[styles.title, {alignSelf: 'center', fontSize: 16}]}>
+            {/* {item.topping_price != '' ? item.topping_price : ''} */}
+            {item.topping_price != '0' ? '₹ ' + item.topping_price : ''}
+            {/* topping price */}
+            {/* need to check */}
             <View style={{flex: 0.1}}></View>
           </Text>
+
           <Image
             source={img_src}
             style={{
-              height: 20,
-              width: 20,
+              height: 25,
+              width: 25,
+
               marginHorizontal: 8,
             }}
           />
@@ -194,12 +199,14 @@ const Item_one_array = ({
           {item.price == '0' ? null : item.price}
         </Text> */}
 
-          <Text style={[styles.title, {alignSelf: 'center'}]}>{item.name}</Text>
+          <Text style={[styles.title, {alignSelf: 'center'}]}>
+            {this.Capitalize(item.name)}
+          </Text>
         </View>
         <View
           style={{flexDirection: 'row', alignItems: 'center', marginRight: 15}}>
           <Text style={[styles.title, {alignSelf: 'center', marginLeft: 20}]}>
-            ₹ {item.price}
+            {item.price != '0' ? '₹ ' + item.price : ''}
           </Text>
           <Image
             source={img_src}
@@ -250,8 +257,8 @@ const Item_jain = ({
         style={{height: 20, width: 20, marginHorizontal: 8}}
       />
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <Text style={[styles.title, {alignSelf: 'center'}]}>
-          {item.is_option_name}
+        <Text style={[styles.title, {alignSelf: 'center', fontSize: 16}]}>
+          {this.Capitalize(item.is_option_name)}
         </Text>
         <View style={{flex: 0.1}}></View>
       </View>
@@ -265,10 +272,15 @@ const jain_data = [
 ];
 
 class Order extends Component {
+  Capitalize(str) {
+    return str[0].toUpperCase() + str.slice(1).toLowerCase();
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       data: '',
+      option_name: '',
       show: true,
       modalVisible: false,
       cart_modalVisible: this.props.myItems.length == 0 ? false : true,
@@ -315,7 +327,7 @@ class Order extends Component {
       is_select_toppings: 0,
       selected_topping_item: {
         topping_id: [],
-        // topping_name: '',
+        //topping_name: '',
         price: 0,
         id: '',
         name: '',
@@ -501,7 +513,7 @@ class Order extends Component {
     const img_src = this.state.selected_topping_array.find(
       idd => idd.t_id == item.topping_id,
     )
-      ? require('../assets/image/green_checkbox.jpg')
+      ? require('../assets/image/green_checkbox.png')
       : require('../assets/image/white_check_box.png');
     // console.log('itemmmmmmmmmmmmm', item);
     return (
@@ -1037,7 +1049,11 @@ class Order extends Component {
       .post('https://www.binarygeckos.com/imp/apis/product/get_categories')
       .then(Response => {
         if (Response.data.status == 1) {
-          console.log(Response.data.status);
+          console.log(
+            'api',
+            'https://www.binarygeckos.com/imp/apis/product/get_categories',
+          );
+          console.log('response', Response.data);
           this.setState({
             MainCat: Response.data.results,
             isLoading: false,
@@ -1290,6 +1306,7 @@ class Order extends Component {
                       id: item.id,
                       name: item.name,
                       qty: 1,
+
                       is_option: jain_data.is_option_name,
                     },
                     is_option_selected_id: jain_data[0].is_option_id,
@@ -1313,8 +1330,8 @@ class Order extends Component {
           alignSelf: 'center',
           // borderWidth: 1,
           marginRight: 25,
-          height: 39,
-          width: 104,
+          height: 36,
+          width: 95,
           marginTop: item.is_options == 0 && item.topping_data == 0 ? 0 : 8,
           borderWidth: 1,
           borderRadius: 7,
@@ -1358,7 +1375,7 @@ class Order extends Component {
             opacity: 0.7,
             alignSelf: 'flex-start',
           }}>
-          +
+          <Text style={{fontSize: 19, fontWeight: 'bold'}}>+</Text>
         </Text>
       </TouchableOpacity>
     );
@@ -1458,7 +1475,7 @@ class Order extends Component {
                   fontWeight: 'bold',
                   // opacity: 0.9,
                 }}>
-                {item.name}
+                {this.Capitalize(item.name)}
               </Text>
             </View>
             <Text
@@ -1499,20 +1516,49 @@ class Order extends Component {
                 }
                 onChange={e => {
                   console.log('qty  == ', e);
+                  console.log('item.qty  == ', item.qty);
                   if (
                     this.props.myItems.filter(
                       newitem => item.id == newitem.id,
                     )[0]
                   ) {
+                    console.log('item.is_options', item.is_options);
                     if (item.is_options == 0 && item.topping_data == 0) {
                       this.toggle_c_Bottomsheet();
                     } else {
-                      this.props.manage_qty(
+                      Alert.alert(
+                        'Alert',
+                        'Do you want to repeat item or new topping',
+                        [
+                          {
+                            text: 'Yes',
+                            onPress: () =>
+                              this.props.manage_qty(
+                                e,
+                                this.props.myItems.filter(
+                                  newitem => item.id == newitem.id,
+                                )[0].id,
+                              ),
+                          },
+                          {
+                            text: 'No',
+                            onPress: () => this.toggle_c_Bottomsheet(),
+                            style: 'cancel',
+                          },
+                        ],
+                        {
+                          cancelable: true,
+                        },
+                      );
+
+                      {
+                        /*   this.props.manage_qty(
                         e,
                         this.props.myItems.filter(
                           newitem => item.id == newitem.id,
                         )[0].id,
-                      );
+                        );  */
+                      }
                     }
                   }
                 }}
@@ -1533,11 +1579,13 @@ class Order extends Component {
                 totalWidth={95}
                 totalHeight={35}
                 iconSize={10}
-                minValue={1}
-                borderColor={'#00000000'}
+                minValue={0}
+                borderColor={'#F10114'}
+                rightButtonBackgroundColor="#F10114"
+                leftButtonBackgroundColor="#F10114"
                 inputStyle={{
-                  backgroundColor: '#C8B9B2',
-                  color: 'black',
+                  backgroundColor: '#F10114',
+                  color: 'white',
                   alignSelf: 'center',
                   height: 33,
                   justifyContent: 'center',
@@ -1546,15 +1594,15 @@ class Order extends Component {
                 type={'plus-minus'}
                 step={1}
                 valueType="real"
-                textColor="#B0228C"
-                iconStyle={{color: 'black'}}
+                textColor="white"
+                iconStyle={{color: 'white', backgroundColor: '#F10114'}}
               />
             ) : (
               this.AddBtn(item, index)
             )}
 
             {item.is_options == 0 && item.topping_data == 0 ? null : (
-              <Text style={{color: '#ED505C', fontSize: 11, marginLeft: 14}}>
+              <Text style={{color: '#F10114', fontSize: 13, marginLeft: 7}}>
                 customisable
               </Text>
             )}
@@ -1570,7 +1618,7 @@ class Order extends Component {
             marginLeft: 25,
             marginRight: 25,
             marginTop: 5,
-            opacity: 0.4,
+            opacity: 0.8,
           }}>
           {item.description}
         </Text>
@@ -1629,7 +1677,7 @@ class Order extends Component {
               <Text
                 style={{
                   color: 'black',
-                  fontSize: 15,
+                  fontSize: 23,
                   fontWeight: 'bold',
                   marginLeft: 12,
                 }}>
@@ -1694,65 +1742,15 @@ class Order extends Component {
                   flexDirection: 'row',
                   justifyContent: 'space-between',
                   marginHorizontal: 20,
-                  marginBottom: 100,
                 }}>
                 <View>
                   <Image
                     source={require('../assets/image/logo_main.png')}
                     style={{
-                      height: 100,
-                      width: 100,
+                      height: 130,
+                      width: 130,
                       resizeMode: 'contain',
                     }}></Image>
-                  <View
-                    style={{
-                      marginTop: 15,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      marginLeft: -10,
-                    }}>
-                    <TouchableOpacity
-                      onPress={() =>
-                        Linking.openURL('https://www.facebook.com/imp.palace/')
-                      }>
-                      <Image
-                        source={require('../assets/image/fb_logo_png.png')}
-                        style={{
-                          height: 25,
-                          width: 25,
-                          resizeMode: 'contain',
-                          tintColor: 'gray',
-                        }}></Image>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      onPress={() =>
-                        Linking.openURL(
-                          'https://www.instagram.com/imperialpalacerajkot/?hl=en',
-                        )
-                      }>
-                      <Image
-                        source={require('../assets/image/instagram_logo_png.png')}
-                        style={{
-                          height: 25,
-                          width: 25,
-                          marginHorizontal: 15,
-                          resizeMode: 'contain',
-                          tintColor: 'gray',
-                        }}></Image>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      onPress={() => Linking.openURL(`tel:${'+912812480000'}`)}>
-                      <Image
-                        source={require('../assets/image/phone_logo_png.png')}
-                        style={{
-                          height: 25,
-                          width: 25,
-                          marginLeft: 5,
-                          resizeMode: 'contain',
-                          tintColor: 'gray',
-                        }}></Image>
-                    </TouchableOpacity>
-                  </View>
                 </View>
                 <View style={{alignItems: 'flex-end'}}>
                   <Image
@@ -1774,10 +1772,64 @@ class Order extends Component {
                   </Text>
                 </View>
               </View>
+              <View
+                style={{
+                  marginTop: 15,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-evenly',
+                  marginBottom: 110,
+                  marginHorizontal: 115,
+                  // marginLeft: -10,
+                }}>
+                <TouchableOpacity
+                  onPress={() =>
+                    Linking.openURL('https://www.facebook.com/imp.palace/')
+                  }>
+                  <Image
+                    source={require('../assets/image/fb_logo_png.png')}
+                    style={{
+                      height: 25,
+                      width: 25,
+                      resizeMode: 'contain',
+                    }}></Image>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    Linking.openURL(
+                      'https://www.instagram.com/imperialpalacerajkot/?hl=en',
+                    )
+                  }>
+                  <Image
+                    source={require('../assets/image/instagram_logo_png.png')}
+                    style={{
+                      height: 25,
+                      width: 25,
+                      marginHorizontal: 15,
+                      resizeMode: 'contain',
+                    }}></Image>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => Linking.openURL(`tel:${'+919978912000'}`)}>
+                  <Image
+                    source={require('../assets/image/phone_call.png')}
+                    style={{
+                      height: 25,
+                      width: 25,
+
+                      resizeMode: 'contain',
+                      tintColor: '#F10114',
+                    }}></Image>
+                </TouchableOpacity>
+              </View>
             </View>
           </ScrollView>
           <BottomSheet
             visible={this.state.c_visible}
+            onBackButtonPress={this.toggle_c_Bottomsheet}
+            onBackdropPress={this.toggle_c_Bottomsheet}
+            //Toggling the visibility state on the click of the back botton
+
             //setting the visibility state of the bottom shee
             // onBackButtonPress={this.toggle_c_Bottomsheet}
             //Toggling the visibility state on the click of the back botton
@@ -1879,7 +1931,7 @@ class Order extends Component {
                         alignItems: 'center',
                         marginLeft: 20,
                       }}>
-                      <Image
+                      {/* <Image
                         source={require('../assets/image/vag.png')}
                         style={{
                           height: 14,
@@ -1887,11 +1939,11 @@ class Order extends Component {
                           alignSelf: 'center',
                           marginLeft: 12,
                         }}
-                      />
+                      /> */}
                       <Text
                         style={{
                           color: '#77787C',
-                          fontSize: 17,
+                          fontSize: 22,
                           marginLeft: 8,
                           fontWeight: 'bold',
                           alignSelf: 'center',
@@ -1955,9 +2007,9 @@ class Order extends Component {
                             alignSelf: 'baseline',
                             marginLeft: 32,
                             marginTop: 15,
-                            fontSize: 17,
+                            fontSize: 22,
                           }}>
-                          Regular/Jain
+                          {this.Capitalize('Regular / Jain')}
                         </Text>
 
                         <FlatList
@@ -1980,7 +2032,7 @@ class Order extends Component {
                             fontWeight: 'bold',
                             alignSelf: 'baseline',
                             marginLeft: 32,
-                            fontSize: 17,
+                            fontSize: 22,
                             marginTop: 15,
                           }}>
                           {this.state.topping_text == ''
@@ -1988,7 +2040,11 @@ class Order extends Component {
                             : this.state.topping_text}
                         </Text>
                         <FlatList
-                          style={{alignContent: 'center', marginLeft: 20}}
+                          style={{
+                            alignContent: 'center',
+                            marginLeft: 20,
+                            fontSize: 20,
+                          }}
                           data={this.state.Toping_data}
                           renderItem={this.renderItemm}
                           // horizontal
@@ -2079,8 +2135,14 @@ class Order extends Component {
                   </ScrollView>
                   <TouchableOpacity
                     onPress={() => {
+                      console.log(
+                        'this.state.selected_topping_item',
+                        this.state.selected_topping_item,
+                      );
                       this.props.addToCart({
                         ...this.state.selected_topping_item,
+                        name: this.state.item_name,
+
                         price: this.get_final_price(this.state.item_price),
                         topping_text: this.state.topping_text,
                         topping_one_text: this.state.topping_one_text,
@@ -2112,7 +2174,7 @@ class Order extends Component {
                       height: 43,
                       marginTop: 10,
                       borderRadius: 3,
-                      backgroundColor: '#ED505C',
+                      backgroundColor: '#F10114',
                       // marginLeft: -5,
                       margin: 15,
                       marginHorizontal: 65,
@@ -2270,7 +2332,7 @@ class Order extends Component {
               style={{
                 width: '95%',
                 height: 60,
-                backgroundColor: '#ED505C',
+                backgroundColor: '#F10114',
                 margin: 6,
 
                 // position: 'absolute',
@@ -2344,6 +2406,7 @@ class Order extends Component {
           )}
           <BottomSheet
             visible={this.state.cart_bottomsheet}
+
             //setting the visibility state of the bottom shee
             // onBackButtonPress={this.toggle_c_Bottomsheet}
             //Toggling the visibility state on the click of the back botton
@@ -2602,12 +2665,13 @@ const styles = StyleSheet.create({
   },
   number_input: {
     borderRadius: 5,
-    borderColor: 'black',
+    borderColor: '#F10114',
     alignSelf: 'center',
     borderWidth: 1,
     marginRight: 24,
-    width: 104,
+    width: 95,
     marginTop: -10,
+    backgroundColor: '#F10114',
     justifyContent: 'center',
   },
   modalView: {
